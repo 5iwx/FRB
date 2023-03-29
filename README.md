@@ -28,4 +28,6 @@
 
 ## 版本记录
 
-- 2023-03-29, usr_name, 这里写一些除了commit msg外还想交代的.
+- 2023-03-29, 5iwx，更新了example, include_picture, 主tex。理论部分进度：大约完成了5/12。
+
+  
