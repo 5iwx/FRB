@@ -1,0 +1,487 @@
+%！TeX program=xelatex
+%! BIB program = bibtex
+\documentclass[zihao=-4]{ctexart}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+%********************导言区宏包引入********************
+\usepackage{xeCJK}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{listings} %代码
+\usepackage{graphicx}
+\usepackage{multicol} %回车换段
+\usepackage{xcolor}
+\usepackage{geometry} %页面设置
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{times}
+\usepackage{fancyhdr} %页眉页脚
+\pagestyle{fancy}
+\usepackage{float} %表格位置
+\usepackage{titlesec} %设置
+\usepackage{titletoc}
+\usepackage{ctex}
+\usepackage{gbt7714}    %控制参考文献格式为国标
+\usepackage{multirow}
+\usepackage{booktabs}   %表格相关
+\usepackage{setspace}   %设置行距
+\usepackage{caption} %caption
+\usepackage{subcaption} %子图的caption
+\usepackage{changepage} %左右缩进
+
+
+\graphicspath{ {include_picture/} }
+\let\algorithm\relax
+\let\endalgorithm\relax
+\usepackage[ruled,vlined]{algorithm2e}%[ruled,vlined]{
+\usepackage{algpseudocode}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}} 
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+%\renewcommand\thepage{\zihao{-5} ~\arabic{page}~}%页码字号
+
+%定义两个arg
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareCaptionLabelSeparator{mysep}{\space\space}  %自定义caption格式
+\captionsetup[figure]{labelfont=bf, labelsep=mysep, textfont=bf}   %图片caption格式
+\captionsetup[table]{labelfont=bf, labelsep=mysep, textfont={bf}}   %表格caption格式
+\bibliographystyle{gbt7714-numerical} %修改了title斜体内容
+
+%********************导言区宏包引入********************
+%********************第三方字体引入********************
+%\setCJKmainfont[Path=fonts/,BoldFont=simhei.ttf,ItalicFont=simkai.ttf,SlantedFont=simfang.ttf]{simsun.ttc}
+%中文字体涵盖黑体、宋体、楷体、仿宋
+\setmainfont[Path=fonts/, 
+BoldFont = times-new-roman-bold.ttf,
+ItalicFont = times-new-roman-italic.ttf,
+BoldItalicFont = times-new-roman-bold-italic.ttf
+]{times-new-roman.ttf}
+\setmonofont[Path=fonts/]{Courier New.ttf}
+\setCJKfamilyfont{hwzs}[Path=fonts/]{STKzhongsong.ttf}%使用STZhogsong华文中宋字体
+\newcommand{\zhongsong}{\CJKfamily{hwzs}}
+\setCJKfamilyfont{hwxw}[Path=fonts/]{STKxinwei.ttf} % XSP 2023/3/3:
+\newcommand{\xinwei}{\CJKfamily{hwxw}}              %  使用STZxinwei华文新魏字体.
+
+%********************第三方字体引入********************
+
+
+%********************中文字号设置********************
+%\newcommand{\chuhao}{\fontsize{42pt}{\baselineskip}\selectfont}
+\newcommand{\chuhao}{\fontsize{42pt}{0}}
+\newcommand{\xiaochu}{\fontsize{36pt}{0}}
+\newcommand{\yihao}{\fontsize{28pt}{0}}
+\newcommand{\erhao}{\fontsize{21pt}{0}}
+\newcommand{\xiaoer}{\fontsize{18pt}{0}}
+\newcommand{\sanhao}{\fontsize{16pt}{0}}
+\newcommand{\sihao}{\fontsize{14pt}{0}}
+\newcommand{\xiaosi}{\fontsize{12pt}{0}}
+\newcommand{\wuhao}{\fontsize{10.5pt}{0}}
+\newcommand{\xiaowu}{\fontsize{9pt}{0}}
+\newcommand{\liuhao}{\fontsize{8pt}{0}}
+\newcommand{\qihao}{\fontsize{5.25pt}{0}}
+%********************中文字号设置********************
+
+
+%********************页边距设置********************
+\geometry{left=3cm,right=2cm,top=2.5cm,bottom=2.5cm}
+\geometry{a4paper} % xsp 2023/3/7: 调整纸张大小为A4
+%********************页边距设置********************
+
+%********************段间距设置********************
+\newcommand{\setParDis}{\setlength {\parskip} {0pt} }
+%请在每部分使用这个
+%********************段间距设置********************
+
+%********************
+
+\begin{document}
+%********************页眉页脚设置********************
+\lhead{}%设置左页眉为空
+\rhead{}%设置左页眉为空
+\setlength{\headwidth}{\textwidth}% 2023/3/3 XSP: 页眉长度适应文本
+%********************页眉页脚设置********************
+
+
+%********************标题格式设置********************
+
+%\setcounter{secnumdepth}{0}%该命令取消了章标题前数字label
+
+\CTEXsetup[name={,、},number={\chinese{section}}]{section}
+\CTEXsetup[name={（,）},number={\chinese{subsection}}]{subsection}
+\CTEXsetup[name={,.},number={\arabic{subsubsection}}]{subsubsection}% 不加会导致目录格式错误
+% 设置subsubsection等格式
+% \titleformat{\section}[block]{\sanhao\bfseries\centering}{\chinese{section}、}{0pt}{}[]
+% \titleformat{\subsection}[block]{\sihao\bfseries}{（\chinese{subsection}）}{0pt}{}[]
+% \titleformat{\subsubsection}[block]{\xiaosi\bfseries}{\arabic{subsubsection}、}{0pt}{}[]
+\titleformat{\section}[block]{\sanhao\heiti\centering}{\chinese{section}、}{0pt}{}[]    % XSP 2023/3/3:
+\titleformat{\subsection}[block]{\sihao\heiti}{（\chinese{subsection}）}{0pt}{}[]       %   将正文标题字体由加粗
+\titleformat{\subsubsection}[block]{\xiaosi\heiti}{\arabic{subsubsection}.}{0pt}{}[]   % 修改为黑体。
+\titlespacing{\section}{0pt}{25pt}{12pt}
+\titlespacing{\subsection}{0pt}{7pt}{7pt}
+\titlespacing{\subsubsection}{0pt}{5pt}{4pt}
+
+\titlecontents{section}[1.6em]{\addvspace{2pt}\filright}
+{\contentspush{\thecontentslabel\hspace{0.8em}}}
+{}{\titlerule*[8pt]{.}\contentspage}
+
+\titlecontents{subsection}[3.2em]{\addvspace{2pt}\filright}
+{\contentspush{\thecontentslabel\hspace{0.8em}}}
+{}{\titlerule*[8pt]{.}\contentspage}
+
+\titlecontents{subsubsection}[6.4em]{\addvspace{2pt}\filright}
+{\contentspush{\thecontentslabel\hspace{0.8em}}}
+{}{\titlerule*[8pt]{.}\contentspage}
+%********************标题格式设置********************
+
+%\setcounter{section}{-3}  %标题计数器
+%\stepcounter{section}
+
+%*******************行间距段前段后*******************
+\linespread{1.8}
+%行间距为实际行间距乘以1.2,如此处实际为1.5倍行距
+\setlength{\parskip}{0.5\baselineskip}
+%*******************行间距段前段后*******************
+
+
+
+%********************封面部分********************
+%
+%     论文题目：应准确、鲜明、简洁，能概括整个论文中最主要和最重要的内容。
+% 题目不超过20个中文字，若语意未尽，可用副标题补充说明。副标题应处于从属
+% 地位，一般可在题目的下一行用破折号“——”引出。论文题目应避免使用不常用缩
+% 略词、首字母缩写字、字符、代号和公式等。
+%
+\leftline{\includegraphics[scale=1]{include_picture/xiaohui.png}} % XSP 2023/3/3: 取消校徽段首缩进
+%格式控制部分
+% \par \  
+% \par \
+% \par \
+\vspace{32pt}
+\begin{center}
+\includegraphics[height=2.25cm, width=12.78cm, scale=1]{include_picture/xiaoming.png}
+\end{center}
+%格式控制部分
+\vspace{12pt}
+
+\begin{spacing}{3}
+    % \erhao
+    \begin{center}
+        \zhongsong\erhao{第三十三届“冯如杯”竞赛主赛道项目论文模板} %黑体这样调用，其余字体同理
+        
+        % \zhongsong{“冯如杯”竞赛主赛道项目是什么}
+    \end{center}
+    \rightline{\xinwei\sanhao{——基于 Latex 的论文模板}} % XSP 2023/3/3: 副标题二号华文新魏居右
+\end{spacing}
+%格式控制部分
+% \par \ 
+% \par \
+\par \ 
+\par \
+\par \ 
+\par \
+% \begin{center}
+%     \sihao
+%     \textbf{学院：计算机学院}
+%     \par \ 
+%     \textbf{本模板原作者：Someday}
+% \end{center}
+
+%格式控制部分
+\par \ 
+\begin{center}
+\sanhao
+\centerline{\heiti{}}%封面年月去掉
+\end{center}
+
+\pagenumbering{gobble} %封面无页码
+%\thispagestyle{empty}
+
+
+\renewcommand{\headrulewidth}{0pt}%没有页眉装饰线
+\clearpage
+\pagenumbering{roman} %摘要目录页小写罗马
+
+\xiaosi
+\section*{摘要}
+\begin{spacing}{1.5}
+  \setParDis %设置段间距为 0
+  本Latex模板是北京航空航天大学大学第三十三届“冯如杯”竞赛主赛道论文模板, 由北京航空航天大学校团委
+基于GitHub用户\textbf{\textit{Somedaywilldo}}与\textbf{\textit{cpfy}}的成果迭代
+开发而来。在此由衷感谢所有开发者对本模板的贡献与对“冯如杯”竞赛的大力支持。
+
+摘要内容包括：“摘要”字样，摘要正文，关键词。在摘要的最下方另起一行，用显著的字符注明文本的关键词。
+
+摘要是论文内容的简短陈述，应体现论文工作的核心思想。摘要一般约500字。摘要内容应涉及本项科研工作的目的和意义、研究思想和方法、研究成果和结论。
+
+关键词是为用户查找文献，从文中选取出来用来揭示全文主题内容的一组词语或术语，应尽量采用词表中的规范词（参照相应的技术术语标准）。关键词一般为3到8个，按词条的外延层次排列。关键词之间用逗号分开，最后一个关键词后不打标点符号。
+
+\end{spacing}
+    
+\textbf{关键词：}关键词1，关键词2，关键词3，关键词4，关键词5
+
+\newpage
+\section*{\textbf{Abstract}} % XSP 2023/3/8: Abstract 加粗
+\begin{spacing}{1.5}
+\begin{adjustwidth}{0.42cm}{0.42cm}
+  \setParDis %设置段间距为 0
+
+\qquad This Latex template for the 33rd Fengru Cup Competition of 
+Beihang University, is developed by Communist Youth League Committee of BUAA 
+iteratively based on the contribution of GitHub 
+users \textbf{\textit{Somedaywilldo}} and \textbf{\textit{cpfy}}. 
+Here, we would like to thank all the developers for their 
+contributions to this template and for their support of the Fengru Cup Competition.
+
+The abstract includes: the word "Abstract", the body of the abstract, and the keywords. On a separate line at the bottom of the abstract, indicate the key words of the text in prominent characters.
+
+The abstract is a short statement of the content of the paper and should reflect the core ideas of the paper work. The abstract is usually about 500 words. The abstract should cover the purpose and significance of this scientific work, research ideas and methods, research results and conclusions.
+
+Keywords are a set of words or terms selected from the text to reveal the subject content of the whole text for the user to find the literature, and the standardized words in the word list (refer to the corresponding technical terminology standards) should be used as much as possible. The keywords are usually 3 to 8, arranged according to the level of extensibility of the words. The keywords are separated by commas, and no punctuation marks are used after the last keyword.
+
+\textbf{Keywords: Keywords 1, Keywords 2, Keywords 3, Keywords 5, Keywords 6}
+\end{adjustwidth}
+\end{spacing}
+
+
+
+%********************摘要部分********************
+
+
+%********************目录部分********************
+\clearpage
+\tableofcontents
+\clearpage
+%********************目录部分********************
+
+
+
+\renewcommand{\headrulewidth}{0.4pt} %恢复页眉装饰线
+
+%********************正文页眉部分********************
+%\lhead{} 
+\chead{\xiaowu 北京航空航天大学第三十三届“冯如杯”竞赛主赛道参赛作品} %设置居中页眉
+%********************正文页眉部分********************
+
+\pagenumbering{arabic} %正文页码从1开始，用阿拉伯数字
+\setcounter{page}{1} 
+
+\section{简介}
+\setParDis %设置段间距为 0
+\begin{spacing}{1.5}
+  第三十三届“冯如杯”主赛道论文一律由在计算机上输入、排版、定稿后转成PDF格式，
+在集中申报时通过网络上传。\textbf{论文封面及全文中不能出现作者姓名、学院、专业、指导老
+师的相关信息}。包括5个部分, 顺序依次为: \par 
+  % 段落间可加入\par进行换行，代替两行回车的写法
+  \begin{itemize}
+    \item 封面（中文）
+    \item 中文摘要、关键词(中文、英文)
+    \item 主体部分
+    \item 结论
+    \item 参考文献
+  \end{itemize}
+
+\section{论文的书写规范}
+
+论文正文部分需分章节撰写，每章应另起一行。
+章节标题要突出重点，简明扼要、层次清晰。字数一般在15字以内，不得使用标点符号。标题中尽量不采用英文缩写词，对必须采用者，应使用本行业的通用缩写词。  层次以少为宜，根据实际需要选择。三级标题的层次按章（如“一、”）、节（如 “（一）”）、条（如“1.”）的格式编写，各章题序的阿拉伯数字用 Times New Roman 体。  
+
+\subsection{字体和字号}
+论文题目：二号，华文中宋体加粗，居中。
+
+副标题：三号，华文新魏，居右（可省略）。
+
+章标题：三号，黑体，居中。
+
+节标题：四号，黑体，居左。
+
+条标题：小四号，黑体，居左。
+
+正文：小四号，中文字体为宋体，西文字体为Times New Roman体，首行缩进，两端对齐。
+
+页码：五号Times New Roman 体，数字和字母\par
+
+\subsection{页边距及行距}
+学术论文的上边距：25mm；下边距：25mm；左边距：30mm；右边距 20mm。
+章、节、条三级标题为单倍行距，段前、段后各设为0.5行（即前后各空0.5行）。
+正文为 1.5 倍行距，段前、段后无空行（即空0行）。
+
+\subsection{页眉}
+页眉内容为北京航空航天大学第三十三届“冯如杯”竞赛主赛道参赛作品，内容居中。
+页眉用小五号宋体字，页眉标注从论文主体部分开始（引言或第一章）。
+请注意论文封面无页眉。
+
+\subsection{页码}
+论文页码从“主体部分（引言、正文、结论）”开始，直至“参考文献”结束，用五号阿
+拉伯数字连续编码，页码位于页脚居中。\textbf{封面、题名页不编页码。}
+
+摘要、目录、图标清单、主要符号表用五号小罗马数字连续编码，页码位于页脚居中。
+
+\subsection{图、表及其附注}
+图和表应安排在正文中第1次提及该图、表的文字的下方，当图或表不能安排在该页时，
+应安排在该页的下一页。
+
+\subsubsection{图}
+图题应明确简短，\textbf{用五号宋体加粗}，数字和字母为\textbf{五号Times New Roman体
+加粗}，图的编号与图题之间应空半角2格。图的编号与图题应置于图下方的居中位置。图内文字
+为\textbf{5号宋体}，数字和字母为\textbf{5号Times New Roman体}。曲线图的纵横坐标必
+须标注“量、标准规定符号、单位”，此三者只有在不必要注明（如无量刚等）的情况下方可省略。
+坐标上标注的量的符号和缩略词必须与正文中一致。
+
+\subsubsection{表}
+表的标号应采用从1开始的阿拉伯数字编号，如：“表 1”、“表 2”、……。表编号应一直连续到附录
+之前，并与章、节和图的编号无关。只有一幅表，仍应标为“表 1”。表题应明确简短，用\textbf{五号宋体
+加粗}，数字和字母为\textbf{五号Times New Roman体加粗}，表的编号与表题之间应空半角2格。表的编号与
+表头应置于表上方的居中位置。表内文字为\textbf{5号宋体}，数字和字母为\textbf{5号Times New Roman体}。  
+
+\subsubsection{附注}
+图、表中若有附注时，附注各项的序号一律用“附注+阿拉伯数字+冒号”，如：“附注1：”。
+
+附注写在图、表的下方，一般采用5号宋体。
+
+\subsubsection{参考文献}
+凡有直接引用他人成果（文字、数字、事实以及转述他人的观点）之处，均应加标注说明列于参考文献中，
+以避免论文抄袭现象的发生。
+
+标注格式：引用参考文献标注方式应全文统一，标注的格式为[序号]，放在引文或转述观点的最后
+一个句号之前，所引文献序号用小4号Times New Roman体、以上角标形式置于方括号中，如“……成果”$^{[1]}$。
+
+\section{公式模板}
+
+公式示例展示如下：
+\begin{align}
+\underset{{\bf I}_c \sim \boldsymbol\Im_c}{\mathrm{\text P}} \Big( \mathcal C({\bf I}_c) \neq \mathcal C({\bf I}_c + \boldsymbol \rho) \Big) \geq \delta ~~~\text{s.t.}~~||\boldsymbol\rho||_p \leq \xi,
+\label{eq:def1}
+\end{align}
+
+\section{图表模板}
+图表示例展示如下：
+
+%插入一张图片
+\begin{figure}[H] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+    \centering %图片居中
+    \includegraphics[width=0.8\textwidth]{example-image-2.png} %插入图片，[]中设置图片大小，{}中是图片文件名
+    \caption{example\_caption} %最终文档中希望显示的图片标题
+    \label{example_label} %用于文内引用的标签
+\end{figure}
+
+% 一行三张子图并排示意
+\begin{figure}[htbp]
+  \begin{subfigure}{0.31\textwidth}
+    \includegraphics[width=\linewidth]{example-image-1.png}
+    \caption{示意图1} \label{fig:9aaa}
+  \end{subfigure}%
+  \hspace*{\fill}   % maximize separation between subfigures
+  \begin{subfigure}{0.31\textwidth}
+    \includegraphics[width=\linewidth]{example-image-1.png}
+    \caption{示意图2} \label{fig:9bbb}
+  \end{subfigure}
+  \hspace*{\fill}   % maximizeseparation between subfigures
+  \begin{subfigure}{0.31\textwidth}
+    \includegraphics[width=\linewidth]{example-image-1.png}
+    \caption{示意图3} \label{fig:9ccc}
+    \end{subfigure}
+\caption{一行三张子图并排示意}
+\label{qmix-train}
+\end{figure}
+
+
+% 2*2四张子图示意
+\begin{figure}[htbp]
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\linewidth]{example-image-1.png}
+    \caption{示意图1} \label{fig:8a}
+  \end{subfigure}%
+  \hspace*{\fill}   % maximize separation between subfigures
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\linewidth]{example-image-1.png}
+    \caption{示意图2} \label{fig:8b}
+  \end{subfigure}\\
+  %\hspace*{\fill}   % maximizeseparation between subfigures
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\linewidth]{example-image-1.png}
+    \caption{示意图3} \label{fig:8c}
+  \end{subfigure}
+  \hspace*{\fill}   % maximize separation between subfigures
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\linewidth]{example-image-1.png}
+    \caption{示意图4} \label{fig:8d}
+  \end{subfigure}
+\caption{2*2四张子图示意} \label{fig:8}
+\end{figure}
+
+%插入一个表格
+
+\begin{table*}[t]
+\centering
+\caption{表格使用示例}
+\begin{tabular}{|l||c|c|c|c|c|c|}
+\hline
+{\textbf{表头 1}}     &  表头 2 	    & 表头 3 	  & 表头 4     & 表头 5 		\\ \hline\hline
+内容 11 		          & 内容 12				& 内容 13		& 内容 14 	 & 内容 15		\\ \hline
+内容 21	              & 内容 22				& 内容 23		& 内容 24	   & 内容 25		\\ \hline
+
+
+\end{tabular}
+\end{table*}
+
+
+%再插入另一种表格
+\begin{table}[H]
+\caption{三线表使用示例}
+\centering
+\begin{tabular}{ccccc}
+\hline  
+\textbf{方法} & \textbf{表头 1} & \textbf{表头 2} & \textbf{表头 3} & \textbf{表头 4} \\ 
+\hline  
+方法1 & 数据  & 数据  & 数据  & 数据\\
+方法2 & 数据  & 数据  & 数据  & 数据\\
+\hline
+\end{tabular} 
+\end{table} 
+
+\section*{结论}% section*生成无标号章节
+\addcontentsline{toc}{section}{结论} % 将无标号章节添加至目录
+论文的结论单独作为一章，但不加章号。
+
+注意: 文件大小不超过5M。
+
+\end{spacing}
+
+\newpage
+
+% XSP 2023/3/16: bib支持不全，暂时改为手动
+\section*{参考文献} % section*生成无标号章节题目
+\addcontentsline{toc}{section}{参考文献} % 将无标号章节添加至目录
+% 著作: [序号]作者．书名[标识码]．出版地：出版社，出版年．
+[1]张志建．严复思想研究[M]．桂林：广西师范大学出版社，1989． 
+
+% 译著: [序号]国名或地区（用圆括号）原作者．书名[标识码]．译者．出版地：出版社，出版年．
+[2]（英）霭理士．性心理学[M]．潘光旦译．北京：商务印书馆，1997．
+
+% 古典文献 文史古籍类引文后加序号，再加圆括号，内加注书名、篇名
+
+% 论文集: [序号]编者．书名[标识码]．出版地：出版社，出版年．
+[3]伍蠡甫．西方论文选（下册）[C]．上海：上海译文出版社，1979．
+
+% 期刊文章: [序号]作者．篇名[标识码]．刊名，年，（期）．
+[4]叶朗．《红楼梦》的意蕴[J]．北京大学学报（哲学社会科学版），1989，（2）
+
+% 报纸文章: [序号]作者．篇名[标识码]．报纸名，出版日期（版次）
+[5]谢希德．创造学习的新思路[N]．人民日报，1998-12-25（10）
+
+% 外文文献: 要求外文文献所表达的信息和中文文献一样多，但文献类型标识码可以不标出。
+[6]Mansfeld, R.S. \& Busse. \textit{T.V. The Psychology of creativity and discovery}, Chinago：
+NelsonHall, 1981
+
+
+
+
+% \begingroup
+% \setstretch{2.0}    %行距2
+% \setlength{\bibsep}{0pt}    %段前段后0
+% \begin{adjustwidth}{0.42cm}{0.42cm} %左右缩进0.42cm
+% \bibliography{references}
+% \end{adjustwidth}
+% \endgroup
+
+\end{document}
