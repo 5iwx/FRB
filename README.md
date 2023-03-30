@@ -35,6 +35,12 @@
 
 ### 分支使用:
 
+0. 查看远程分支 `git branch -r`
+1. 首先在本地创建一个分支, 以scenario为例:`git checkout -b scenario origin/scenario`
+    通过这种方式, 同时可以将scenario绑定在远程分支origin/scenario上
+2. 修改分支
+3. `git push origin scenario`
+
 git branch -m develop master
 git fetch origin
 git branch -u origin/master master
