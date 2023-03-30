@@ -41,11 +41,6 @@
 2. 修改分支
 3. `git push origin scenario`
 
-git branch -m develop master
-git fetch origin
-git branch -u origin/master master
-git remote set-head origin -a
-
 ***
 
 # 3 日志
