@@ -345,13 +345,114 @@ Keywords are a set of words or terms selected from the text to reveal the subjec
 标注格式：引用参考文献标注方式应全文统一，标注的格式为[序号]，放在引文或转述观点的最后
 一个句号之前，所引文献序号用小4号Times New Roman体、以上角标形式置于方括号中，如“……成果”$^{[1]}$。
 
-\section{公式模板}
+\section{原理与算法}
+\subsection{基于哈达玛积的问题转化}
+\subsection{基于交互式谕示机证明的零知识范围证明}
+\subsubsection{默克尔树}
+默克尔树（Merkle Tree or Hash Tree）是一棵用哈希值搭建起来的树，树的所有节点都存
+储了哈希值。整棵树包含根节点、中间节点和叶节点。树采取自下而上的生成方式，叶节点经
+哈希运算得到哈希值，而其余节点的哈希值均由其子节点的哈希值经哈希计算得到。默克尔树
+的具体结构见\ref*{Merkle}。
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{Merkle_tree.bmp} 
+  \caption{默克尔树结构图}
+  \label{Merkle}
+\end{figure}
+基于哈希函数的防碰撞特性（Collision resistance）、隐藏性(Hiding)和谜题
+友好性（Puzzle friendly），对默克尔树的任意局部修改，都会对根节点和路径
+上的中间节点产生影响。默克尔树的这个特性提供了一种很好的检测数据是否被篡
+改的方法。在本文中，我们使用具有抗碰撞特性和不可逆特性的哈希函数来构造默
+克尔树，进而利用构造的树来完成对向量的承诺，并通过次线性尺度的证明来开放
+树的多处索引。对向量$\;v\;$的承诺包含以下三种算法，即承诺操作、开放操作、
+验证操作：
+\begin{itemize}
+  \item $\text{root}_v\leftarrow \text{MT.Commit}(v)$
+  \item $(\{v_i\}_{i\in\mathcal{I}},\pi^v_{\mathcal{I}})\leftarrow\text{MT.Open}(\mathcal{I},v)$
+  \item $\{1,0\}\leftarrow\text{MT.Verify}(\text{root}_v,\mathcal{I},\{v_i\}_{i\in\mathcal{I}},\pi^v_{\mathcal{I}})$
+\end{itemize}
 
-公式示例展示如下：
-\begin{align}
-\underset{{\bf I}_c \sim \boldsymbol\Im_c}{\mathrm{\text P}} \Big( \mathcal C({\bf I}_c) \neq \mathcal C({\bf I}_c + \boldsymbol \rho) \Big) \geq \delta ~~~\text{s.t.}~~||\boldsymbol\rho||_p \leq \xi,
-\label{eq:def1}
-\end{align}
+\subsubsection{里得·所罗门编码}
+
+\subsubsection{诚实验证方前提的零知识证明}
+零知识证明（Zero-Knowledge Argument of Knowledge, ZKAoK
+）是一种验证协议，在其中证明方（Prover）不提供任何有关某个论断的有用信息，
+而能使验证方（Verifier）验证该论断为正确的。这项协议技术
+在信息安全及密码学等领域应用广泛。
+“诚实验证方前提（Honest Verifier）”意为验证方是正确遵循协议进行验证的。\par
+用计算复杂度理论（Computational Complexity Theory）的模型定义，零知识证明
+是一个用于证明NP（Non-deterministic Polynomial）二元关系$\mathcal{R}$的
+算法三元组$(\mathcal{G}, \mathcal{P}, \mathcal{V})$。其中$\mathcal{G}$表示
+公共参数生成算法，设其输出为pp；$\mathcal{P}$和$\mathcal{V}$分别表示非确定多
+项式时间（Probabilistic Polynomial Time, PPT）的证明算法和验证算法。\par
+诚实验证方前提的零知识证明具有以下条件需要满足：
+\begin{itemize}
+  \item \textbf{\emph{完备性（Completeness）}}：即正确的论断都可以被证明为正确。假设$\lambda$为私有参数，
+      对于每个$\mathcal{G}$的输出pp$\leftarrow\mathcal{G}(1^{\lambda})$，每
+      个$\mathcal{R}$中的元素$(x,\omega)$，以及字母表上任意字符串$z\in\{0,1\}^*$，有：
+      \[\text{Pr}[\langle \mathcal{P}({\omega}),\mathcal{V}(z)(\text{pp},x)=1\rangle]=1-\text{negl}(\lambda)\]
+      其中Pr表示概率，negl($\lambda$)表示当$\lambda$足够大时，可以忽略不计的量。
+  \item \textbf{\emph{正确性（Soundness）}}：即被证明的论断大都是正确的，只有极小的可能出错。对于每个$\mathcal{G}$的输出pp
+      $\leftarrow\mathcal{G}(1^{\lambda})$，
+      每个不在$\mathcal{R}$中的元素$(x,\omega)$，以及字母表上任意字符串$z\in\{0,1\}^*$，有：
+      \[\text{Pr}[\langle \mathcal{P}^*({\omega}),\mathcal{V}(z)(\text{pp},x)=1\rangle]\le\text{negl}(\lambda)\]
+      其中$\mathcal{P}^*$表示任意的PPT证明方。
+  \item \textbf{\emph{零知识性（Zero-knowledge）}}：即$\mathcal{P}$和$\mathcal{V}$之间的对话可以只依据公开信息被完全模拟。对于
+      每个$\mathcal{G}$的输出pp$\leftarrow\mathcal{G}(1^{\lambda})$，任意的诚实的PPT验证方$\mathcal{V}$，
+      每个$\mathcal{R}$中的元素$(x,\omega)$和任意字母表上的字符串$z\in\{0,1\}^*$，存在一个PPT模拟机$\mathcal{S}$，使得：
+      \[\{\langle \mathcal{P}(\omega),\mathcal{V}(z)\rangle(\text{pp},x)\}\overset{c}{\approx}\{\mathcal{S}^{\mathcal{V}}(\text{pp},x,z)\}\]
+      其中$\mathcal{S}^{\mathcal{V}}$表示多项式空间下给定$\mathcal{V}$的模拟机，$\overset{c}{\approx}$表示两者在计算上不可区分
+      （Computationally indistinguishable）。
+  \item \textbf{\emph{知识论证性（Argument of knowledge）}}：即所有论证的证明都不会是不合法的。对于每个$\mathcal{G}$的输出pp$\leftarrow\mathcal{G}(1^{\lambda})$，
+      任意的$x,z\in\{0,1\}^*$，对于所有恶意的PPT证明方$\mathcal{P^*}$，存在一个可预期多项式时间的抽取机$\mathcal{E}$，使得：
+      \[\text{Pr}[\langle \mathcal{P^*}(\omega),\mathcal{V}(z)\rangle(\text{pp},x)=1\wedge((x,\omega)\not\in\mathcal{R})|_{\omega\leftarrow\mathcal{E}^{\mathcal{P^*}}(\text{pp},x)}]\le\text{negl}(\lambda)\]
+      其中$\mathcal{E}^{\mathcal{P}^*}$表示抽取机对$\mathcal{P^*}$的任意性及整个运行过程都具有访问权限。
+\end{itemize}
+
+\subsubsection{交互式谕示机证明}
+交互式谕示机证明（Interactive Oracle Proof, IOP）是一种证明系统模型，在其中验证方可以通过谕示机概率性地问询证明方所持有的
+关于被证明的论断的有效信息，但由于是概率性地问询，所以验证方并不能得到证明方的全部信息。\par
+同样，使用计算复杂度理论的模型来定义，IOP是证明$\;k\;$轮NP二元关系的算法三元组$(\mathcal{G},\mathcal{P},\mathcal{V})$，其中
+$\mathcal{G}$表示公共参数生成算法，设其输出为pp；$\mathcal{P}$和$\mathcal{V}$分别表示PPT证明算法和验证算法。具体而言，一个$\;k\;$轮的IOP包含$\;k\;$
+轮的交互（interaction）。在第$\;i\;$轮（$0<i\le k$），验证方向证明方均匀且随机地发送消息$m_i$，且验证方能够通过谕示机得到
+以$\;m_i\;$为输入的输出，证明方需返回$\;\pi_i\;$给验证方。在最后一轮，验证方得到了证明方返回的$\;k\;$个位置的信息
+$\;\pi=(\pi_1,\cdots,\pi_k)$，并且需决定接受或拒绝证明方的证明（Proof）。\par
+交互式谕示机证明具有以下条件需要满足：
+\begin{itemize}
+  \item \textbf{\emph{完备性（Completeness）}}：对于每个pp$\leftarrow\mathcal{G}(1^{\lambda})$以及$(x,\omega)\in\mathcal{R}$，有：
+        \[\text{Pr}[\langle \mathcal{P}(\omega),\mathcal{V}^{\pi}\rangle(\text{pp},x)=1]=1\]
+        其中$\mathcal{V}^{\pi}$表示$\mathcal{V}$可以访问谕示$\pi$。
+  \item \textbf{\emph{正确性（Soundness）}}：对于每个pp$\leftarrow\mathcal{G}(1^{\lambda})$，每个PPT的$\mathcal{P^*}$以及$(x,\omega)\not\in\mathcal{R}$，有：
+        \[\text{Pr}[\langle \mathcal{P}^*(\omega),\mathcal{V}^{\pi}\rangle(\text{pp},x)=1]\le\text{negl}(\lambda)\]
+\end{itemize}\par
+在本文中所应用的原理中，主要涉及两种类型的IOP，分别是\emph{RS-IOP}和\emph{IOP of proximity}，前者即使用里德-所罗门码（Reed-Solomon code）的IOP，
+后者指对于正确性的条件，允许证明方的秘密和合法证据之间具有微小的差距（proximity）。
+
+\subsubsection{单变量求和校验协议}
+单变量求和校验协议（Univariate Sum-check Protocol）主要应用于有限域上的多项式求和问题。首先，假设有两个乘法群
+$H, L\subset \mathbb{F}\;(|L|>|H|)$，一个小于$k(k>|H|)$阶的单变量多项式$f(\cdot)$，以及一个被声明（claimed）的和$\mu$。
+在已有假设上，单变量求和校验协议的作用就是证明$\sum_{a\in H}f(a)=\mu$。在实际操作中，证明方需要将$f(x)$利用带余除法
+唯一地转化为$x\cdot\hat{p}(x)+\zeta+\hat{Z_H}(x)\hat{h}(x)$，其中除式为$\hat{Z_H}(x)$，代表$H$上的“消失”多项式（Vanishing polynomial），
+满足$\forall a\in H,\;\hat{Z_H}(a)=0$。接着，基于对$\hat{f}|_L$和$\hat{h}|_L$的谕示机访问，验证方可以验证是否有$\hat{p}|_L\in\text{RS}(L,\frac{|H|-1}{|L|})$
+以及$\hat{h}|_L\in\text{RS}(L,\frac{|L|-|H|}{|L|})$，其中$\hat{p}(x)=\dfrac{|H|\cdot\hat{f}(x)-\mu-|H|\cdot\hat{Z_H}(x)\hat{h}(x)}{x}$。
+这种基于RS编码加密的IOP具有完美的完整性和完美的完备性。当我们将它转换为一个IOP时，它仍然是在检验谕示$\hat{f}|_L,\hat{h}|_L,\hat{p}|_L$是否为具有相应
+度的界限的RS码。而这个过程可以通过下面的低度检测协议来完成。
+
+\subsubsection{低度检测和FRI}
+给定被声明的度啊$k_1,\cdots,k_t$，码字$\hat{v}_1|_L,\cdots,\hat{v}_t|_L$，其中$L$为一个乘法陪集，低度检测协议允许验证方借助对这些码字的谕示机访问来检验以下语句是否成立：
+\[\forall j\in\{0,\cdots,t\},\;\hat{v}_j|_L\in\text{RS}[L,\frac{k_j}{|L|}]\]\par
+本文中的低度检测协议选取快速Reed-Solomon交互式谕示机邻近证明（Fast Reed-Solomon Interactive Oracle Proof of Proximity, Fast RS IOPP, FRI）。
+给定对证明方消息$\;l\;$处取值的谕示机访问，该FRI 是具有完整性（Completeness）和正确性（Soundness）容错率为
+$O(\frac{L}{\mathbb{F}})+\text{negl}(l,k)$的IOPP，其中$l=O(\lambda),k=\max\{k_1,\cdots,k_t\}$。\par
+总的来说，用于实现单变量求和校验的FRI协议可以表示为：
+\[\langle \text{FRI}.\mathcal{P}(\hat{f},\hat{h},\hat{p},\text{FRI}.\mathcal{V}^{\hat{f}|_L,\hat{h}|_L,\hat{p}|_L})\rangle(k,k-|H|,|H|-1)\]
+
+% 公式示例展示如下：
+% \begin{align}
+% \underset{{\bf I}_c \sim \boldsymbol\Im_c}{\mathrm{\text P}}
+%  \Big( \mathcal C({\bf I}_c) \neq \mathcal C({\bf I}_c + \boldsymbol \rho) \Big) \geq \delta ~~~\text{s.t.}~~||\boldsymbol\rho||_p \leq \xi,
+% \label{eq:def1}
+% \end{align}
 
 \section{图表模板}
 图表示例展示如下：
@@ -411,7 +512,7 @@ Keywords are a set of words or terms selected from the text to reveal the subjec
 
 %插入一个表格
 
-\begin{table*}[t]
+\begin{table*}[H]
 \centering
 \caption{表格使用示例}
 \begin{tabular}{|l||c|c|c|c|c|c|}
