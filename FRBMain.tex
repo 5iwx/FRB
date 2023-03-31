@@ -364,8 +364,8 @@ Keywords are a set of words or terms selected from the text to reveal the subjec
 上的中间节点产生影响。默克尔树的这个特性提供了一种很好的检测数据是否被篡
 改的方法。在本文中，我们使用具有抗碰撞特性和不可逆特性的哈希函数来构造默
 克尔树，进而利用构造的树来完成对向量的承诺，并通过次线性尺度的证明来开放
-树的多处索引。对向量$\;v\;$的承诺包含以下三种算法，即承诺操作、开放操作、
-验证操作：
+树的多处索引。对向量$\;v\;$的承诺包含以下三种算法，即承诺操作（Commit）、
+开放操作（Open）、验证操作（Verify）：
 \begin{itemize}
   \item $\text{root}_v\leftarrow \text{MT.Commit}(v)$
   \item $(\{v_i\}_{i\in\mathcal{I}},\pi^v_{\mathcal{I}})\leftarrow\text{MT.Open}(\mathcal{I},v)$
@@ -373,6 +373,17 @@ Keywords are a set of words or terms selected from the text to reveal the subjec
 \end{itemize}
 
 \subsubsection{里得·所罗门编码}
+里得·所罗门编码（Reed-Solomon Code, RS Code）是一种编码方式，用其编码的码字是域上
+某个特定单变量多项式的一组函数值，表示成向量的形式。因此，在本文中我们使用RS\;Code来编码
+向量。\par
+用抽象代数的模型来定义，选择一个$\;q\;$阶的有限域$\mathbb{F}$，作为编码的字母表。
+再选择$\mathbb{F}$的一个陪集$\;L\;$，所选择的特定单变量多项式成为编码多项式（encoding polynomial），且度
+小于$\rho\cdot|L|$，其中$\rho\in(0,1)$称为编码率，用这样的多项式编码出的向量表示为
+$\text{RS}[L,\rho]\in\mathbb{F}^{|L|}$。\par
+具体而言，编码的过程如下：设插值集$H=\{\xi_1,\cdots,\xi_{|H|}\}$,估值集$L=\{\eta_1,\cdots,\eta_{|L|}\}$，
+且$|L|>|H|$，被编码的向量设为$v\in\mathbb{F}^{|H|}$。首先，找到预设的度的编码多项式$\hat{p}$，使得
+$\hat{p}|_H=\{\hat{p}(\xi_1),\cdots,\hat{p}(\xi_{|H|})\}=v$。然后计算$\hat{p}$在$L$上的估值（Evaluation），得到
+码字$\hat{p}|_L$。计算估值和插值的算法使用快速傅里叶变换（Fast Fourier Transform, FFT）和其逆变换（IFFT）。
 
 \subsubsection{诚实验证方前提的零知识证明}
 零知识证明（Zero-Knowledge Argument of Knowledge, ZKAoK
@@ -439,9 +450,10 @@ $H, L\subset \mathbb{F}\;(|L|>|H|)$，一个小于$k(k>|H|)$阶的单变量多�
 度的界限的RS码。而这个过程可以通过下面的低度检测协议来完成。
 
 \subsubsection{低度检测和FRI}
-给定被声明的度啊$k_1,\cdots,k_t$，码字$\hat{v}_1|_L,\cdots,\hat{v}_t|_L$，其中$L$为一个乘法陪集，低度检测协议允许验证方借助对这些码字的谕示机访问来检验以下语句是否成立：
+给定度$k_1,\cdots,k_t$，码字$\hat{v}_1|_L,\cdots,\hat{v}_t|_L$，其中$L$为一个乘法陪集，低度检测协议允许验证方借助对这些码字的谕示机访问来检验以下语句是否成立：
 \[\forall j\in\{0,\cdots,t\},\;\hat{v}_j|_L\in\text{RS}[L,\frac{k_j}{|L|}]\]\par
-本文中的低度检测协议选取快速Reed-Solomon交互式谕示机邻近证明（Fast Reed-Solomon Interactive Oracle Proof of Proximity, Fast RS IOPP, FRI）。
+即用于编码给定码字的编码多项式的度是否低于给定的度。\par
+在本文中，我们的低度检测协议选取快速Reed-Solomon交互式谕示机邻近证明（Fast Reed-Solomon Interactive Oracle Proof of Proximity, Fast RS IOPP, FRI）。
 给定对证明方消息$\;l\;$处取值的谕示机访问，该FRI 是具有完整性（Completeness）和正确性（Soundness）容错率为
 $O(\frac{L}{\mathbb{F}})+\text{negl}(l,k)$的IOPP，其中$l=O(\lambda),k=\max\{k_1,\cdots,k_t\}$。\par
 总的来说，用于实现单变量求和校验的FRI协议可以表示为：
