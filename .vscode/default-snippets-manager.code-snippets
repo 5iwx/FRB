@@ -1,4 +1,14 @@
 {
+	"冯如杯-列表item": {
+		"prefix": "冯如杯-列表item",
+		"description": "冯如杯-列表item",
+		"scope": "latex",
+		"body": [
+			"\\begin{itemize}\r",
+			"  \\item \r",
+			"\\end{itemize}"
+		]
+	},
 	"冯如杯--插入图片": {
 		"prefix": "冯如杯--插入图片",
 		"description": "冯如杯--插入图片",

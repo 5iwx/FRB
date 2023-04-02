@@ -23,22 +23,23 @@
 \contentsline {subsection}{\numberline {（二）}痛点分析}{2}{}%
 \contentsline {subsection}{\numberline {（三）}研究现状}{3}{}%
 \contentsline {subsubsection}{\numberline {1.}位置服务系统架构}{3}{}%
-\contentsline {subsubsection}{\numberline {2.}位置隐私保护常用方法}{3}{}%
-\contentsline {subsection}{\numberline {（四）}技术优势及创新点}{3}{}%
-\contentsline {subsection}{\numberline {（五）}前景扩展}{3}{}%
+\contentsline {subsubsection}{\numberline {2.}位置隐私保护常用策略}{3}{}%
+\contentsline {subsubsection}{\numberline {3.}我们的技术}{4}{}%
+\contentsline {subsection}{\numberline {（四）}技术优势及创新点}{4}{}%
+\contentsline {subsection}{\numberline {（五）}前景扩展}{4}{}%
 \contentsline {section}{\numberline {五、}简介}{4}{}%
-\contentsline {section}{\numberline {六、}论文的书写规范}{4}{}%
-\contentsline {subsection}{\numberline {（一）}字体和字号}{4}{}%
-\contentsline {subsection}{\numberline {（二）}页边距及行距}{4}{}%
+\contentsline {section}{\numberline {六、}论文的书写规范}{5}{}%
+\contentsline {subsection}{\numberline {（一）}字体和字号}{5}{}%
+\contentsline {subsection}{\numberline {（二）}页边距及行距}{5}{}%
 \contentsline {subsection}{\numberline {（三）}页眉}{5}{}%
-\contentsline {subsection}{\numberline {（四）}页码}{5}{}%
-\contentsline {subsection}{\numberline {（五）}图、表及其附注}{5}{}%
-\contentsline {subsubsection}{\numberline {1.}图}{5}{}%
-\contentsline {subsubsection}{\numberline {2.}表}{5}{}%
-\contentsline {subsubsection}{\numberline {3.}附注}{5}{}%
+\contentsline {subsection}{\numberline {（四）}页码}{6}{}%
+\contentsline {subsection}{\numberline {（五）}图、表及其附注}{6}{}%
+\contentsline {subsubsection}{\numberline {1.}图}{6}{}%
+\contentsline {subsubsection}{\numberline {2.}表}{6}{}%
+\contentsline {subsubsection}{\numberline {3.}附注}{6}{}%
 \contentsline {subsubsection}{\numberline {4.}参考文献}{6}{}%
-\contentsline {section}{\numberline {七、}公式模板}{6}{}%
-\contentsline {section}{\numberline {八、}图表模板}{6}{}%
-\contentsline {section}{结论}{8}{}%
-\contentsline {section}{参考文献}{9}{}%
+\contentsline {section}{\numberline {七、}公式模板}{7}{}%
+\contentsline {section}{\numberline {八、}图表模板}{7}{}%
+\contentsline {section}{结论}{9}{}%
+\contentsline {section}{参考文献}{10}{}%
 \contentsfinish 
