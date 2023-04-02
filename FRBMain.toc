@@ -17,14 +17,21 @@
 \contentsline {subsubsection}{\numberline {4.}参考文献}{3}{}%
 \contentsline {section}{\numberline {三、}原理与算法}{3}{}%
 \contentsline {subsection}{\numberline {（一）}基于哈达玛积的问题转化}{3}{}%
-\contentsline {subsection}{\numberline {（二）}基于交互式谕示机证明的零知识范围证明}{3}{}%
+\contentsline {subsection}{\numberline {（二）}范围证明的理论基础}{3}{}%
 \contentsline {subsubsection}{\numberline {1.}默克尔树}{3}{}%
 \contentsline {subsubsection}{\numberline {2.}里得·所罗门编码}{4}{}%
 \contentsline {subsubsection}{\numberline {3.}诚实验证方前提的零知识证明}{4}{}%
 \contentsline {subsubsection}{\numberline {4.}交互式谕示机证明}{5}{}%
 \contentsline {subsubsection}{\numberline {5.}单变量求和校验协议}{6}{}%
 \contentsline {subsubsection}{\numberline {6.}低度检测和FRI}{7}{}%
-\contentsline {section}{\numberline {四、}图表模板}{7}{}%
-\contentsline {section}{结论}{9}{}%
-\contentsline {section}{参考文献}{10}{}%
+\contentsline {subsubsection}{\numberline {7.}向量内积论证}{7}{}%
+\contentsline {subsection}{\numberline {（三）}基于交互式谕示机证明的零知识范围证明}{8}{}%
+\contentsline {subsubsection}{\numberline {1.}批处理向量内积论证}{8}{}%
+\contentsline {subsubsection}{\numberline {2.}对于$[0,u^{n-1}]$的范围证明}{10}{}%
+\contentsline {subsubsection}{\numberline {3.}批处理范围证明}{10}{}%
+\contentsline {subsubsection}{\numberline {4.}对于任意范围的范围证明}{11}{}%
+\contentsline {subsubsection}{\numberline {5.}零知识范围证明}{12}{}%
+\contentsline {section}{\numberline {四、}图表模板}{12}{}%
+\contentsline {section}{结论}{14}{}%
+\contentsline {section}{参考文献}{15}{}%
 \contentsfinish 

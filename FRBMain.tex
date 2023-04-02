@@ -347,12 +347,12 @@ Keywords are a set of words or terms selected from the text to reveal the subjec
 
 \section{原理与算法}
 \subsection{基于哈达玛积的问题转化}
-\subsection{基于交互式谕示机证明的零知识范围证明}
+\subsection{范围证明的理论基础}
 \subsubsection{默克尔树}
 默克尔树（Merkle Tree or Hash Tree）是一棵用哈希值搭建起来的树，树的所有节点都存
 储了哈希值。整棵树包含根节点、中间节点和叶节点。树采取自下而上的生成方式，叶节点经
 哈希运算得到哈希值，而其余节点的哈希值均由其子节点的哈希值经哈希计算得到。默克尔树
-的具体结构见\ref*{Merkle}。
+的具体结构见图\ref{Merkle}。
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\textwidth]{Merkle_tree.bmp} 
@@ -383,7 +383,7 @@ $\text{RS}[L,\rho]\in\mathbb{F}^{|L|}$。\par
 具体而言，编码的过程如下：设插值集$H=\{\xi_1,\cdots,\xi_{|H|}\}$,估值集$L=\{\eta_1,\cdots,\eta_{|L|}\}$，
 且$|L|>|H|$，被编码的向量设为$v\in\mathbb{F}^{|H|}$。首先，找到预设的度的编码多项式$\hat{p}$，使得
 $\hat{p}|_H=\{\hat{p}(\xi_1),\cdots,\hat{p}(\xi_{|H|})\}=v$。然后计算$\hat{p}$在$L$上的估值（Evaluation），得到
-码字$\hat{p}|_L$。计算估值和插值的算法使用快速傅里叶变换（Fast Fourier Transform, FFT）和其逆变换（IFFT）。
+码字$\hat{p}|_L$。计算估值和插值的算法使用快速傅里叶变换（Fast Fourier Transform, FFT）和其逆变换（Inverse FFT, IFFT）。
 
 \subsubsection{诚实验证方前提的零知识证明}
 零知识证明（Zero-Knowledge Argument of Knowledge, ZKAoK
@@ -436,28 +436,175 @@ $\;\pi=(\pi_1,\cdots,\pi_k)$，并且需决定接受或拒绝证明方的证明�
   \item \textbf{\emph{正确性（Soundness）}}：对于每个pp$\leftarrow\mathcal{G}(1^{\lambda})$，每个PPT的$\mathcal{P^*}$以及$(x,\omega)\not\in\mathcal{R}$，有：
         \[\text{Pr}[\langle \mathcal{P}^*(\omega),\mathcal{V}^{\pi}\rangle(\text{pp},x)=1]\le\text{negl}(\lambda)\]
 \end{itemize}\par
-在本文中所应用的原理中，主要涉及两种类型的IOP，分别是\emph{RS-IOP}和\emph{IOP of proximity}，前者即使用里德-所罗门码（Reed-Solomon code）的IOP，
+在本文中，主要涉及两种类型的IOP，分别是\emph{RS-IOP}和\emph{IOP of proximity}，前者即使用里德-所罗门码（Reed-Solomon code）的IOP，
 后者指对于正确性的条件，允许证明方的秘密和合法证据之间具有微小的差距（proximity）。
 
 \subsubsection{单变量求和校验协议}
 单变量求和校验协议（Univariate Sum-check Protocol）主要应用于有限域上的多项式求和问题。首先，假设有两个乘法群
 $H, L\subset \mathbb{F}\;(|L|>|H|)$，一个小于$k(k>|H|)$阶的单变量多项式$f(\cdot)$，以及一个被声明（claimed）的和$\mu$。
-在已有假设上，单变量求和校验协议的作用就是证明$\sum_{a\in H}f(a)=\mu$。在实际操作中，证明方需要将$f(x)$利用带余除法
-唯一地转化为$x\cdot\hat{p}(x)+\zeta+\hat{Z_H}(x)\hat{h}(x)$，其中除式为$\hat{Z_H}(x)$，代表$H$上的“消失”多项式（Vanishing polynomial），
-满足$\forall a\in H,\;\hat{Z_H}(a)=0$。接着，基于对$\hat{f}|_L$和$\hat{h}|_L$的谕示机访问，验证方可以验证是否有$\hat{p}|_L\in\text{RS}(L,\frac{|H|-1}{|L|})$
-以及$\hat{h}|_L\in\text{RS}(L,\frac{|L|-|H|}{|L|})$，其中$\hat{p}(x)=\dfrac{|H|\cdot\hat{f}(x)-\mu-|H|\cdot\hat{Z_H}(x)\hat{h}(x)}{x}$。
-这种基于RS编码加密的IOP具有完美的完整性和完美的完备性。当我们将它转换为一个IOP时，它仍然是在检验谕示$\hat{f}|_L,\hat{h}|_L,\hat{p}|_L$是否为具有相应
+在已有假设上，单变量求和校验协议的作用就是证明$\sum_{a\in H}f(a)=\mu$。\par
+在实际操作中，证明方需要将$f(x)$利用带余除法唯一地转化为$x\cdot\hat{p}(x)+\zeta+\hat{Z_H}(x)\hat{h}(x)$，
+其中除式为$\hat{Z_H}(x)$，代表$H$上的“消失”多项式（Vanishing polynomial），满足$\forall a\in H,\;\hat{Z_H}(a)=0$。
+接着，基于对$\hat{f}|_L$和$\hat{h}|_L$的谕示机访问，验证方可以验证是否有$\hat{p}|_L\in\text{RS}(L,\frac{|H|-1}{|L|})$
+以及$\hat{h}|_L\in\text{RS}(L,\frac{|L|-|H|}{|L|})$，其中：
+\begin{equation}\hat{p}(x)=\dfrac{|H|\cdot\hat{f}(x)-\mu-|H|\cdot\hat{Z_H}(x)\hat{h}(x)}{x}\end{equation}
+以上采用RS编码的IOP满足正确性和完备性，当我们将它转换为一个标准IOP时，它仍然是在检验
+谕示$\hat{f}|_L,\hat{h}|_L,\hat{p}|_L$是否为具有相应
 度的界限的RS码。而这个过程可以通过下面的低度检测协议来完成。
 
 \subsubsection{低度检测和FRI}
 给定度$k_1,\cdots,k_t$，码字$\hat{v}_1|_L,\cdots,\hat{v}_t|_L$，其中$L$为一个乘法陪集，低度检测协议允许验证方借助对这些码字的谕示机访问来检验以下语句是否成立：
-\[\forall j\in\{0,\cdots,t\},\;\hat{v}_j|_L\in\text{RS}[L,\frac{k_j}{|L|}]\]\par
-即用于编码给定码字的编码多项式的度是否低于给定的度。\par
+\begin{equation}\forall j\in\{0,\cdots,t\},\;\hat{v}_j|_L\in\text{RS}[L,\frac{k_j}{|L|}]\label{低度检测}\end{equation}
+公式（\ref{低度检测}）用于检测编码给定码字的编码多项式的度是否低于给定的度。\par
 在本文中，我们的低度检测协议选取快速Reed-Solomon交互式谕示机邻近证明（Fast Reed-Solomon Interactive Oracle Proof of Proximity, Fast RS IOPP, FRI）。
 给定对证明方消息$\;l\;$处取值的谕示机访问，该FRI 是具有完整性（Completeness）和正确性（Soundness）容错率为
 $O(\frac{L}{\mathbb{F}})+\text{negl}(l,k)$的IOPP，其中$l=O(\lambda),k=\max\{k_1,\cdots,k_t\}$。\par
 总的来说，用于实现单变量求和校验的FRI协议可以表示为：
-\[\langle \text{FRI}.\mathcal{P}(\hat{f},\hat{h},\hat{p},\text{FRI}.\mathcal{V}^{\hat{f}|_L,\hat{h}|_L,\hat{p}|_L})\rangle(k,k-|H|,|H|-1)\]
+\begin{equation}\langle \text{FRI}.\mathcal{P}(\hat{f},\hat{h},\hat{p},\text{FRI}.\mathcal{V}^{\hat{f}|_L,\hat{h}|_L,\hat{p}|_L})\rangle(k,k-|H|,|H|-1)\end{equation}\par
+
+\subsubsection{向量内积论证}
+向量内积论证（Inner Product Arguments, IPA），是一
+证明手段，即给出两个向量$\vec{a},\vec{b}$的承诺
+（commitment），其中$\vec{a},\vec{b}$属于
+$\mathbb{F}^n$，$\mathbb{F}$为域，可以证明这两个
+被承诺的向量的内积等于某一公开的标量，而不需要揭示
+这两个向量的具体取值。\par
+在信息安全领域，常见的承诺方式有皮特森哈希值
+（Pedersen hash）或者RS编码，在本文中采用后者。\par
+向量内积论证可以用于证明单变量多项式在某点处的值。首先将多项式
+$\hat{f}=f_0+f_1x+\cdots+f_nx^n$表示为向量$\vec{f}=(f_0,f_1,\cdots,f_n)$
+注意到：
+\begin{equation}\hat{f}(s)=(\vec{f},(1,s,\cdots,s^n))\label{IPA转化}\end{equation}\par
+公式（\ref{IPA转化}）表明计算等价于两个向量的内积，因此可转化为向量内积论证。
+
+\subsection{基于交互式谕示机证明的零知识范围证明}
+\subsubsection{批处理向量内积论证}
+为了实现批处理IPA（Batch Inner Product Argument, B-IPA），我们考虑单变量求和校验协议的
+一个性质：无论多个多项式的阶数是否相同，单变量求
+和校验协议都支持校验每一个一元多项式的和。此性质
+为构造一个校验编码向量间内积关系的IPA提供了一种
+可能，其中编码向量来自于不同阶数的编码多项式。\par
+特别地，将阶数分别为$k_1,...,k_t$的秘密编码多项式
+设为$\hat{v}_1,...,\hat{v}_t$。再将阶数分别为
+$k_{t+1},...,k_{2t}$的公开多项式设为
+$\hat{r}_1,...,\hat{r}_t$。假定证明方$\mathcal{P}$
+想要证明对于任意$j \in \{1,\cdots,t\}$,都满足
+$\sum_{a\in H}\hat{v}_j(a)\cdot\hat{r}_j(a)=y_j$。
+实现过程中，证明方$\mathcal{P}$首先需要用默克尔
+树生成对$(\hat{v}_1|_L,...,\hat{v}_t|_L)$的承
+诺，并将其发送给验证方$\mathcal{V}$。接着，验证方选
+择随机$t$个元素$\beta_1,...,\beta_t$，设
+$\hat{q}=\sum\limits_{j=1}^t\beta_j\hat{v}_j\cdot\hat{r}_j$。
+最后证明方$\mathcal{P}$和验证方$\mathcal{V}$
+使用单变量求和校验协议来证明以下等式成立：
+\begin{equation}\sum_{a\in H}\hat{q}(a)=\sum_{a\in H}\sum\limits_{j=1}^t\beta_j\hat{v}_j(a)\cdot\hat{r}_j(a)=\sum\limits_{j=1}^t\beta_jy_j\label{B-IPA和校验}\end{equation}\par
+除此之外，批处理IPA的正确性容错率（Soundness error）仅取决于$\;t\;$个项
+中最大的阶数$k_{\max}$，$k_{\max}=\max\{k_i+k_{t+i}\}_{1\le i\le t}$。\par
+基于此，我们给出\textbf{批处理内积关系\emph{（Batch inner product relation）}}的定义：设二元关系$\mathcal{R}_{\text{B-IPA}}$为所有$(x,\omega)$的集合，其中：
+\[\begin{aligned}&x=(\mathbb{F},H,L,\{k_j\}_{1\le j\le2t},\{\hat{r}_j\}_{1\le j\le t},\{y_j\}_{1\le j\le t})\\&\omega=\{\hat{v}_j\}_{1\le j\le t}\end{aligned}\]\par
+且有公式（\ref{B-IPA和校验}）成立。\par
+接下来验证该批处理IPA的正确性、完备性以及知识论证性：\par
+\begin{itemize}
+  \item \textbf{批处理IPA的完备性\emph{（B-IPA Completeness）}}：考虑$\hat{q}$的变换，
+        设对$j \in\{1,\cdots,t\}$,有$\sum_{a\in H}\beta_jv_j(a)r_j(a)=\beta_jy_j$，那么公式（\ref{B-IPA和校验}）成立。
+        这符合单变量和校验的二元关系形式。因此，批处理IPA有着与单变量和校验协议相同的完备性。
+  \item \textbf{批处理IPA的正确性\emph{（B-IPA Soundness)}}：可以考虑以下两种发生错误的情形：\par
+        \underline{情形一}.假设由于随机的线性选择组合，非法的单变量和校验关系恰好成立。
+        我们假设$\forall j \in\{1,\cdots,t\},\sum_{a\in H}\hat{v}_j(a)\cdot\hat{r}_j(a)=y_j^{\prime}$
+        ，且对于$\{1,\cdots,t\}$的某个子集$Q$，有$\forall q \in Q,y_q\neq y_q^{\prime}$。简便起见，不妨设$t\in Q$。
+        验证方随机选择t-1个元素$\beta_1,\cdots,\beta_{t-1}$，则$\sum_{j=1}^t\beta_jy_j=\sum_{j=1}^t\beta_jy_j^{\prime}$
+        当且仅当：
+        \begin{equation}\beta_t=\dfrac{\beta_1(y_1^{\prime}-y_1)+\cdots+\beta_{t-1}(y_{t-1}^{\prime}-y_{t-1})}{y_t-y_t^{\prime}} \label{错误情形一}\end{equation}
+        公式（\ref{错误情形一}）发生的可能性仅为$1/|\mathbb{F}|$，而实际选用的有限域大小往往很大，因此概率可忽略不计。\par
+        \underline{情形二}.假设变量和校验关系是非法的，即公式（\ref{B-IPA和校验}）不成立。
+          那么批处理IPA正确性的错误有以下三种可能：\par
+        （1）若RS编码的IOP非法，则正确性取决于单变量和校验协议，故具有正确性。\par
+        （2）若FRI非法，则正确性错误的上界为$\epsilon_{FRI}=\mathcal{O}(|L|/|\mathrm{F}|)+negl(\ell,k_{max}/|L|)$。\par
+        （3）若默克尔树的根不正确或任意验证路径不正确，由于哈希函数的防碰撞性质，正确性错误的上界为$negl(\lambda)$。
+  \item \textbf{批处理IPA的知识论证性\emph{（B-IPA Knowledge Argument)}}：批处理IPA是基于随机谕示机模型的一种知识论证。
+        对于任意PPT对手$\mathcal{P}^\ast$，总存在一个PPT抽取机$\mathcal{E}$使得：给定$\mathcal{P}^\ast$的随机访问带，
+        对每个由$\mathcal{P}^\ast$生成的陈述：
+        \begin{equation}
+          x=(\mathbb{F},H,L,\{k_j\}_{j\in [2t]},\{\hat{r_j}\}_{j\in [t]},\{y_j\}_{j \in [t]})
+        \end{equation}\par
+        有以下的概率为$\text{negl}(\lambda)$：
+        \begin{equation}
+          \text{Pr}\left[\begin{matrix}&\text{root}^*\leftarrow\mathcal{P}^*(1^{\lambda},x),\langle\mathcal{P}^*,\mathcal{V}\rangle(\text{pp,x})=1,\{\hat{v}_j\}_{1\le j\le t}\leftarrow\mathcal{E}(1^{\lambda},x):\\&\text{MT.Commit}(\mathbb{V}|_L)\neq\text{root}^*\vee(x,\{\hat{v}_j\}_{1\le j\le t})\not\in\mathcal{R}_{\text{B-IPA}}\end{matrix}\right]
+        \end{equation}
+        批处理IPA的知识论证属性来源于默克尔树的可抽取性。给定默克尔树树根和足够多的验证通路，总存在一个高效的方法
+        能够抽取默克尔树上所有被承诺的叶节点。一旦这些叶节点被成功提取，就能通过IFFT算法获取满足$|L|>k_{\max}$的
+        秘密多项式，进而实现知识论证的属性。
+\end{itemize}
+
+\subsubsection{对于$[0,u^{n-1}]$的范围证明}
+为了证明上界为$u^m$（即$u$进制展开为$m$位）的秘密值$V$在
+范围$[0,2^n-1]$中（$n<m$），只需要满足以下等式：
+\begin{equation}
+  \begin{aligned}
+    &v\odot(v-1^m)\odot\cdots\odot(v-u^m)=0^m,\\
+    &v\odot(1^{m-n}||0^n)=0^m.
+  \end{aligned}
+\end{equation}\par
+其中$v=(v_0,v_1,\ldots,v_{m-1}),V=\sum\limits_{j=0}^mv_ju^j$。进一步地，相当于证明：
+\begin{equation}
+  \begin{aligned}
+    &\langle v\odot(v-1^m)\odot\cdots\odot(v-u^m),r\rangle=0,\\
+    &\langle v,r_{[:m-n]}||0^n\rangle=0.
+    \label{任意基底范围证明}
+  \end{aligned}
+\end{equation}\par
+经理论计算，对于验证方选取的任意$r\in\mathbb{F}$，公式（\ref{任意基底范围证明}）非法成立，即出现正确性错误的概率为$1/\mathbb{F}$。\par
+对于公式（\ref{任意基底范围证明}），可以利用批处理IPA来证明，即输入设为：
+\begin{equation}
+  \begin{aligned}
+    &x=(\mathbb{F},H,L,(u|H|-(u-1)),|H|,|H|,|H|,(\hat{r},\hat{s}),(0,0)),\\
+    &\omega=(\hat{w},\hat{v})
+  \end{aligned}
+\end{equation}\par
+基于此，我们给出\textbf{范围关系\emph{（Range relation）}}的定义：设二元关系$\mathcal{R}_{\text{RP}}$为
+所有$(x,\omega)$的集合，其中：
+\[
+  x=(\mathbb{F},H,L,m,n,[0,u^n-1]),\;\omega=V.
+\]\par
+且有秘密值$V$满足$V\in[0,u^n-1]$成立。
+
+\subsubsection{批处理范围证明}
+基于前述的批处理IPA，我们可以构建一个证明多个秘密值在各自对应范围内的证明。
+假设我们要证明秘密值$V_1,...,V_t$分别处于对应范围$[0,u_1^{n_1}-1],...,[0,u_t^{n_t}-1]$，
+那么对于任意$j \in \{1,\ldots,t\}$,都有如下公式：
+\begin{equation}\begin{aligned}&v_j\odot(v_j-1^m)\odot\cdots\odot(v_j-u_j^m)=0^m,\\&v_j\odot(1^{m-n_j}||0^{n_j})=0^m\end{aligned}\end{equation}\par
+其中$m\ge\max\{n_1,...,n_t\}$。进一步转换上述公式，可以推出：对于任意$j \in \{1,\cdots,t\}$,都有如下公式：
+\begin{equation}\begin{aligned}
+&\langle v_j\odot(v_j-1^m)\odot...\odot(v_j-u_j^m),r\rangle=0,\\
+&\langle v_j,(r^{m-n_j}||0^{n_j})\rangle=0\label{第2次调用B-IPA}
+\end{aligned}\end{equation}\par
+对于公式（\ref{第2次调用B-IPA}），可以利用批处理IPA来证明，即输入设为：
+\begin{equation}\begin{aligned}
+&x=(\mathbb{F},H,L,\{k_j\}_{j \in [4t]},\{\hat{r}_j\}_{j\in [2t]},\{y_j\}_{j \in [2t]}),\\
+&w=\hat{w}_1,...,\hat{w}_t,\hat{v}_1,...,\hat{v}_t,
+\end{aligned}\end{equation}\par
+其中一些变量满足如下关系:
+\begin{equation}\begin{aligned}
+&\{k_j\}_{j\in [t]}=\underbrace{u_1|H|-(u_1-1),...,t_t|H|-(u_t-1)}_t,\\
+&\{k_j\}_{j\in [t+1,4t]}=\underbrace{|H|,...,|H|}_{3t},\\
+&\{\hat{r}_j\}_{j\in [2t]}=\underbrace{\hat{r},...,\hat{r}}_t,\underbrace{\hat{s}_1,...,\hat{s}_t}_t,\\
+&\{y_j\}_{j\in [2t]}=\underbrace{0,...,0}_{2t}.
+\end{aligned}\end{equation}\par
+其中对任意$j\in \{1,\cdots,t\},\hat{s}_j$和$\hat{v}_j$是$r^{m-n_j}||0^{n_j},v_j$的编码多项式，
+以及$\hat{w}_j=\hat{v}_j(\hat{v}_j-1)\cdot\cdot\cdot(\hat{v}_j-u_j)$。\par
+\subsubsection{对于任意范围的范围证明}
+考虑到实际整数范围证明往往是任意整数，我们需要进一步拓宽前述范围证明的通用性。
+为了实现这一点，我们需要利用前述的对范围$[0,u^n-1]$的范围证明。
+假设要验证秘密值$V\in[A,B-1]$,其中$A,B$均为任意整数，我们首先将这个问题进行如下转化：
+\begin{equation}V-A\in [0,u^n-1]\wedge V-B+u^n\in [0,u^n-1]\end{equation}\par
+其中$u^{n-1}<B<u^n$。基于新的公式，我们成功将任意整数范围的证明转化到了
+范围$[0,u^n-1]$的证明上，从而我们可以利用前述的对范围$[0,u^n-1]$的范围证明来
+实现任意范围的范围证明。\par
+在任意范围的证明流程中，验证方不采用基于秘密值$V$的向量$v$的询问，
+而是直接让证明方通过IPA证明$V-A=C$和$V-B+u^n=D$。由于此处IPA不止一个，
+因此我们可以引入批处理IPA来加快处理过程。实际上，任意范围的范围证明可以
+简单看作基于批处理IPA的多个任意基底范围证明的有效融合。
+\subsubsection{零知识范围证明}
 
 % 公式示例展示如下：
 % \begin{align}
