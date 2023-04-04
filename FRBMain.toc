@@ -20,26 +20,27 @@
 \contentsline {subsection}{\numberline {（三）}创新点说明}{1}{}%
 \contentsline {section}{\numberline {四、}绪论}{1}{}%
 \contentsline {subsection}{\numberline {（一）}研究背景与意义}{1}{}%
-\contentsline {subsection}{\numberline {（二）}痛点分析}{2}{}%
-\contentsline {subsection}{\numberline {（三）}研究现状}{3}{}%
-\contentsline {subsubsection}{\numberline {1.}位置服务系统架构}{3}{}%
-\contentsline {subsubsection}{\numberline {2.}位置隐私保护常用策略}{3}{}%
-\contentsline {subsubsection}{\numberline {3.}我们的技术}{4}{}%
-\contentsline {subsection}{\numberline {（四）}技术优势及创新点}{4}{}%
-\contentsline {subsection}{\numberline {（五）}前景扩展}{4}{}%
-\contentsline {section}{\numberline {五、}简介}{4}{}%
-\contentsline {section}{\numberline {六、}论文的书写规范}{5}{}%
-\contentsline {subsection}{\numberline {（一）}字体和字号}{5}{}%
-\contentsline {subsection}{\numberline {（二）}页边距及行距}{5}{}%
-\contentsline {subsection}{\numberline {（三）}页眉}{5}{}%
-\contentsline {subsection}{\numberline {（四）}页码}{6}{}%
-\contentsline {subsection}{\numberline {（五）}图、表及其附注}{6}{}%
-\contentsline {subsubsection}{\numberline {1.}图}{6}{}%
-\contentsline {subsubsection}{\numberline {2.}表}{6}{}%
-\contentsline {subsubsection}{\numberline {3.}附注}{6}{}%
-\contentsline {subsubsection}{\numberline {4.}参考文献}{6}{}%
-\contentsline {section}{\numberline {七、}公式模板}{7}{}%
-\contentsline {section}{\numberline {八、}图表模板}{7}{}%
-\contentsline {section}{结论}{9}{}%
-\contentsline {section}{参考文献}{10}{}%
+\contentsline {subsection}{\numberline {（二）}研究现状}{2}{}%
+\contentsline {subsubsection}{\numberline {1.}集中式结构}{3}{}%
+\contentsline {subsubsection}{\numberline {2.}分布式结构}{3}{}%
+\contentsline {subsubsection}{\numberline {3.}混合结构}{4}{}%
+\contentsline {subsubsection}{\numberline {4.}位置隐私保护常用策略}{5}{}%
+\contentsline {subsubsection}{\numberline {5.}我们的技术}{5}{}%
+\contentsline {subsection}{\numberline {（三）}技术优势及创新点}{6}{}%
+\contentsline {subsection}{\numberline {（四）}前景扩展}{6}{}%
+\contentsline {section}{\numberline {五、}简介}{6}{}%
+\contentsline {section}{\numberline {六、}论文的书写规范}{7}{}%
+\contentsline {subsection}{\numberline {（一）}字体和字号}{7}{}%
+\contentsline {subsection}{\numberline {（二）}页边距及行距}{7}{}%
+\contentsline {subsection}{\numberline {（三）}页眉}{7}{}%
+\contentsline {subsection}{\numberline {（四）}页码}{7}{}%
+\contentsline {subsection}{\numberline {（五）}图、表及其附注}{8}{}%
+\contentsline {subsubsection}{\numberline {1.}图}{8}{}%
+\contentsline {subsubsection}{\numberline {2.}表}{8}{}%
+\contentsline {subsubsection}{\numberline {3.}附注}{8}{}%
+\contentsline {subsubsection}{\numberline {4.}参考文献}{8}{}%
+\contentsline {section}{\numberline {七、}公式模板}{9}{}%
+\contentsline {section}{\numberline {八、}图表模板}{9}{}%
+\contentsline {section}{结论}{11}{}%
+\contentsline {section}{参考文献}{12}{}%
 \contentsfinish 
