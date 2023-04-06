@@ -5,50 +5,36 @@
 \ttl@change@i {\@ne }{subsubsection}{6.4em}{\addvspace {2pt}\filright }{\contentspush {\thecontentslabel \hspace {0.8em}}}{}{\titlerule *[8pt]{.}\contentspage }\relax 
 \ttl@change@v {subsubsection}{}{}{}\relax 
 \contentsline {section}{\numberline {一、}作品概述}{1}{}%
-\contentsline {subsection}{\numberline {（一）}研究背景与需求分析}{1}{}%
-\contentsline {subsection}{\numberline {（二）}研究现状和替代方案}{1}{}%
-\contentsline {subsection}{\numberline {（三）}本作品概述}{1}{}%
-\contentsline {subsection}{\numberline {（四）}应用前景}{1}{}%
-\contentsline {section}{\numberline {二、}设计与实现}{1}{}%
-\contentsline {subsection}{\numberline {（一）}系统设计}{1}{}%
-\contentsline {subsection}{\numberline {（二）}核心技术}{1}{}%
-\contentsline {subsection}{\numberline {（三）}预备知识}{1}{}%
-\contentsline {subsection}{\numberline {（四）}预备知识}{1}{}%
-\contentsline {section}{\numberline {三、}作品分析}{1}{}%
-\contentsline {subsection}{\numberline {（一）}成果展示}{1}{}%
-\contentsline {subsection}{\numberline {（二）}安全与性能测试}{1}{}%
-\contentsline {subsection}{\numberline {（三）}创新点说明}{1}{}%
-\contentsline {section}{\numberline {四、}作品概述}{1}{}%
 \contentsline {subsection}{\numberline {（一）}研究背景与意义}{1}{}%
 \contentsline {subsection}{\numberline {（二）}研究现状}{2}{}%
-\contentsline {subsubsection}{\numberline {1.}集中式结构}{3}{}%
+\contentsline {subsubsection}{\numberline {1.}集中式结构}{2}{}%
 \contentsline {subsubsection}{\numberline {2.}分布式结构}{3}{}%
-\contentsline {subsubsection}{\numberline {3.}混合结构}{4}{}%
-\contentsline {subsection}{\numberline {（三）}研究内容与贡献(to be continued)}{5}{}%
-\contentsline {subsection}{\numberline {（四）}章节安排(to be continued)}{5}{}%
-\contentsline {subsection}{\numberline {（五）}前景扩展(to be merged)}{5}{}%
-\contentsline {section}{\numberline {五、}基础概念与预备知识}{5}{}%
-\contentsline {subsection}{\numberline {（一）}非负矩阵分解}{5}{}%
-\contentsline {subsubsection}{\numberline {1.}概念}{5}{}%
-\contentsline {subsubsection}{\numberline {2.}算法简介}{6}{}%
-\contentsline {subsection}{\numberline {（二）}地理近邻矩阵}{6}{}%
-\contentsline {section}{\numberline {六、}作品设计与实现}{7}{}%
-\contentsline {subsection}{\numberline {（一）}系统概述}{7}{}%
-\contentsline {subsection}{\numberline {（二）}关键技术}{7}{}%
-\contentsline {subsubsection}{\numberline {1.}基于非负矩阵分解的兴趣点推荐模型}{7}{}%
-\contentsline {section}{\numberline {七、}简介}{8}{}%
-\contentsline {section}{\numberline {八、}论文的书写规范}{8}{}%
-\contentsline {subsection}{\numberline {（一）}字体和字号}{9}{}%
-\contentsline {subsection}{\numberline {（二）}页边距及行距}{9}{}%
-\contentsline {subsection}{\numberline {（三）}页眉}{9}{}%
-\contentsline {subsection}{\numberline {（四）}页码}{9}{}%
-\contentsline {subsection}{\numberline {（五）}图、表及其附注}{9}{}%
-\contentsline {subsubsection}{\numberline {1.}图}{9}{}%
-\contentsline {subsubsection}{\numberline {2.}表}{10}{}%
-\contentsline {subsubsection}{\numberline {3.}附注}{10}{}%
-\contentsline {subsubsection}{\numberline {4.}参考文献}{10}{}%
-\contentsline {section}{\numberline {九、}公式模板}{10}{}%
-\contentsline {section}{\numberline {十、}图表模板}{10}{}%
-\contentsline {section}{结论}{13}{}%
-\contentsline {section}{参考文献}{14}{}%
+\contentsline {subsubsection}{\numberline {3.}混合结构}{3}{}%
+\contentsline {subsection}{\numberline {（三）}作品概述与创新点说明(to be continued)}{5}{}%
+\contentsline {subsection}{\numberline {（四）}内容结构安排(to be continued)}{5}{}%
+\contentsline {section}{\numberline {二、}预备知识}{5}{}%
+\contentsline {section}{\numberline {三、}作品设计与实现}{5}{}%
+\contentsline {subsection}{\numberline {（一）}需求分析}{5}{}%
+\contentsline {subsection}{\numberline {（二）}系统概述}{5}{}%
+\contentsline {subsection}{\numberline {（三）}关键技术}{5}{}%
+\contentsline {section}{\numberline {四、}作品成果展示与可行性分析}{5}{}%
+\contentsline {section}{\numberline {五、}前景展望}{5}{}%
+\contentsline {section}{\numberline {六、}结论}{5}{}%
+\contentsline {section}{\numberline {七、}参考文献}{5}{}%
+\contentsline {section}{\numberline {八、}——————模板分割线——————}{5}{}%
+\contentsline {section}{\numberline {九、}简介}{5}{}%
+\contentsline {section}{\numberline {十、}论文的书写规范}{6}{}%
+\contentsline {subsection}{\numberline {（一）}字体和字号}{6}{}%
+\contentsline {subsection}{\numberline {（二）}页边距及行距}{6}{}%
+\contentsline {subsection}{\numberline {（三）}页眉}{6}{}%
+\contentsline {subsection}{\numberline {（四）}页码}{6}{}%
+\contentsline {subsection}{\numberline {（五）}图、表及其附注}{7}{}%
+\contentsline {subsubsection}{\numberline {1.}图}{7}{}%
+\contentsline {subsubsection}{\numberline {2.}表}{7}{}%
+\contentsline {subsubsection}{\numberline {3.}附注}{7}{}%
+\contentsline {subsubsection}{\numberline {4.}参考文献}{7}{}%
+\contentsline {section}{\numberline {十一、}公式模板}{8}{}%
+\contentsline {section}{\numberline {十二、}图表模板}{8}{}%
+\contentsline {section}{结论}{10}{}%
+\contentsline {section}{参考文献}{11}{}%
 \contentsfinish 
