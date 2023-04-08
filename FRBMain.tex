@@ -929,8 +929,29 @@ $\hat{v}^{\prime}_j=\hat{v}_j+\hat{Z}_H\cdot\hat{\delta}_j$，其中$\hat{Z}_H$�
   1|H|\enspace+&1|H|+ 2\cdot Tree(|L|/2^{\eta_1}, \ell)|H|\enspace + \enspace2\cdot Tree(|L|/2^{\eta_1+\eta_2}, \ell)|H| \enspace+\\
   &\enspace3\cdot \ell \cdot 2^{\eta_1}|\mathbb{F}|\enspace +\enspace \ell \cdot 2^{\eta_2}|\mathbb{F}|\enspace + \enspace2^{k_{max}-\eta_1-\eta_2}|\mathbb{F}|
   \end{aligned}
-\end{equation}
-从实际需求出发，一般情况下GPS范围证明的距离边界可选范围
+\end{equation}\par
+\begin{table}[H] % [!h]
+  \centering
+  \caption{范围证明空间性能测试结果}
+  \begin{threeparttable}
+      \begin{tabular}{|c|c|c|c|c|}\hline
+          \multirow{2}{*}{维数n} & \multirow{2}{*}{证明次数t}&\multicolumn{3}{c|}{范围证明大小}  \\ \cline{3-5}
+          \multirow{2}{*}{} & \multirow{2}{*}{}& $\pi$ & $\pi \; \text{in} \;[23]$ & $\pi \; \text{in} [24]] $\\ \hline
+          32 & 1 & 22.4KB & 11.8KB & -\\ \hline
+           64 & 1 & 28.7KB & - & -\\ \hline
+          128 & 1 & 28.3KB & 26.4KB & -\\ \hline
+           256 & 1 & 34.8KB & - & -\\ \hline
+           512 & 1 & 40.7KB & 51.3KB & -\\ \hline
+          \multirow{3}{*}{固定64} & 180 & 0.11MB & - & 4.52MB \\ \cline{2-5}
+          \multirow{3}{*}{} & 500 & 0.27MB & - & 4.87MB \\ \cline{2-5}
+           \multirow{3}{*}{} & 1000 & 0.52MB & - & 5.36MB \\ \cline{1-5}
+      \end{tabular}
+      注：其中前四行数据涉及参数$\ell=41$,$\rho=2^{-3}$,$e=3$,$\lambda=120$,$\eta=\{2,2\}$。第五行参数
+       $\ell=41$,$\rho=2^{-3}$,$e=3$,$\lambda=120$,$\eta=\{2,3\}$。后三行参数$\ell=33$,$\rho=2^{-3}$,$e=3$,$\lambda=128$,$\eta=\{1,2\}$。
+  \end{threeparttable}
+  \label{空间性能}
+\end{table}
+从实际需求出发，GPS范围证明的距离边界可选范围
 $[l_{\min}$,$l_{\max}]\subseteq[0, 10^6]$。经整数化处理，范围扩展到
 $L_{\min}$,$L_{\max}\subseteq[0, 10^{11}]$。而对于本文的ZKRP，即使范
 围扩大到$[0, 2^{512}-1]$,在其它参数选取合理的情况下，其证明大小也仅有$40.7KB$。
@@ -938,62 +959,43 @@ $L_{\min}$,$L_{\max}\subseteq[0, 10^{11}]$。而对于本文的ZKRP，即使范
 不会占用太多的空间。而这符合GPS范围证明对轻量化的需求。\par
 以二进制向量为基准，本文ZKRP与其它后量子安全ZKRP的空间性能测试结果
 如表\ref{空间性能}所示。从表格可以看出，当维数$n$不断增大时，
-本文ZKRP的证明大小增长幅度明显小于基于格的ZKRP[35]，在$n=512$时，
+本文ZKRP的证明大小增长幅度明显小于Lyubashevsky的ZKRP\cite{Thirty-five}，在$n=512$时，
 前者证明大小已经小于后者，缩减幅度达到了$20.6 \% $。这充分说明，
 无论维数是高还是低，本文ZKRP均有不错的证明大小。除此之外，
 本文ZKRP由于引入了批量处理操作，其在多次证明时具有相当优异的表现。
-与[17]中的ZKRP相比，当$n=1000$时，本文ZKRP证明大小远小于后者，
+与Couteau等人\cite{seventeen}的ZKRP相比，当$n=1000$时，本文ZKRP证明大小远小于后者，
 仅为后者的$9.7\%$。批量处理操作的引入，可以说是大幅度优化了范围证明在多次证明中的表现，
 这有利于有效解决实际应用中的多证明处理问题。
-\begin{table}[!h] % [!h]
-    \centering
-    \caption{范围证明空间性能测试结果}
-    \begin{threeparttable}
-        \begin{tabular}{|c|c|c|c|c|}\hline
-            \multirow{2}{*}{维数n} & \multirow{2}{*}{证明次数t}&\multicolumn{3}{c|}{范围证明大小}  \\ \cline{3-5}
-            \multirow{2}{*}{} & \multirow{2}{*}{}& $\pi$ & $\pi \quad in [学长35]$ & $\pi \quad in [学长17]$\\ \hline
-            32 & 1 & 22.4KB & 11.8KB & -\\ \hline
-             64 & 1 & 28.7KB & - & -\\ \hline
-            128 & 1 & 28.3KB & 26.4KB & -\\ \hline
-             256 & 1 & 34.8KB & - & -\\ \hline
-             512 & 1 & 40.7KB & 51.3KB & -\\ \hline
-            \multirow{3}{*}{固定64} & 180 & 0.11MB & - & 4.52MB \\ \cline{2-5}
-            \multirow{3}{*}{} & 500 & 0.27MB & - & 4.87MB \\ \cline{2-5}
-             \multirow{3}{*}{} & 1000 & 0.52MB & - & 5.36MB \\ \cline{1-5}
-        \end{tabular}
-        注：其中前四行数据涉及参数               $\ell=41$,$\rho=2^{-3}$,$e=3$,$\lambda=120$,$\eta=\{2,2\}$。第五行参数
-         $\ell=41$,$\rho=2^{-3}$,$e=3$,$\lambda=120$,$\eta=\{2,3\}$。后三行参数$\ell=33$,$\rho=2^{-3}$,$e=3$,$\lambda=128$,$\eta=\{1,2\}$。
-    \end{threeparttable}
-    \label{空间性能}
-\end{table}
+
 \subsubsection{时间复杂度}
 本篇论文采用的ZKRP在运行时间上同样具有不错的表现，尤其是面对GPS范围证明这种输入数值相对较小的应用场景。\par
 从理论层面分析，双方交互的时间为$\mathcal{O}(\log n)|\mathbb{F}|$,证明时间为$\mathcal{O}(n\log n)$FFT$+\mathcal{O}(\log$\\$ n)|\mathbb{F}|$,
 验证时间为$\mathcal{O}(n\log n)$FFT$+\mathcal{O}(logn)|\mathbb{F}|$，其中$n$代表向量维数。这些理论数值表明本文采用的ZKRP具有良好的时间性能。\par
-本文ZKRP的性能测试结果如表...所示（学长28页）。由表...可知，当维数$n=32$，范围维数为$32$时，证明时间为$0.0207s$，验证时间为$0.0041s$，
+\begin{table}[H] % [!h]
+  \centering
+  \caption{本文ZKRP时间性能测试结果}
+  \begin{tabular}{|c|c|c|c|}\hline
+      向量维数 &  范围维数 & 证明时间（s） & 验证时间（s）\\ \hline
+       \multirow{3}{*}{32} & 32 & 0.0207 & 0.0041 \\ \cline{2-4}
+       \multirow{3}{*}{} & 128 & 0.0456 & 0.0077 \\  \cline{2-4}
+       \multirow{3}{*}{} & 512 & 0.1855 & 0.0243\\ \hline
+       \multirow{3}{*}{64} & 32 & 0.0354 & 0.0069 \\ \cline{2-4}
+       \multirow{3}{*}{} & 128 & 0.0755 & 0.0123 \\  \cline{2-4}
+       \multirow{3}{*}{} & 512 & 0.2907 & 0.0400 \\ \hline
+       \multirow{3}{*}{128} & 32 & 0.0638 & 0.0103 \\ \cline{2-4}
+       \multirow{3}{*}{} & 128 & 0.1401 & 0.0197 \\  \cline{2-4}
+       \multirow{3}{*}{} & 512 & 0.5242 & 0.0624 \\ \hline
+  \end{tabular}
+  \label{时间性能}
+\end{table}
+本文ZKRP的性能测试结果如表\ref{时间性能}所示。由表\ref{时间性能}可知，当维数$n=32$，范围维数为$32$时，证明时间为$0.0207s$，验证时间为$0.0041s$，
 处于一个很小的数量级。当维数$n$变为$128$，范围维数变为$512$时，证明时间为$0.5242s$，验证时间为$0.0624s$,两者时间明显增大。不过，类似于空间复杂度，
 由于应用场景中的证明范围并不是很大，范围证明的时间开销也是相对较小的。而在GPS范围证明这个应用场景，
 $[l_{\min}$,$l_{\max}]\subseteq[0, 10^6]\Rightarrow L_{\min}$,$L_{\max}\subseteq[0, 10^{11}]$，
 此时证明时间仍处于$10^{-2}$数量级，验证时间仍处于$10^{-3}$数量级。甚至在一般情况，范围可能进一步缩小到
 $[l_{\min}$,$l_{\max}]\subseteq[0, 10^3]\Rightarrow L_{\min}$,$L_{\max}\subseteq[0, 10^8]$，
 证明时间将进一步减少。而这种数量级的时间显然是可接受的。
-\begin{table}[!h] % [!h]
-    \centering
-    \caption{本文ZKRP时间性能测试结果}
-    \begin{tabular}{|c|c|c|c|}\hline
-        向量维数 &  范围维数 & 证明时间（s） & 验证时间（s）\\ \hline
-         \multirow{3}{*}{32} & 32 & 0.0207 & 0.0041 \\ \cline{2-4}
-         \multirow{3}{*}{} & 128 & 0.0456 & 0.0077 \\  \cline{2-4}
-         \multirow{3}{*}{} & 512 & 0.1855 & 0.0243\\ \hline
-         \multirow{3}{*}{64} & 32 & 0.0354 & 0.0069 \\ \cline{2-4}
-         \multirow{3}{*}{} & 128 & 0.0755 & 0.0123 \\  \cline{2-4}
-         \multirow{3}{*}{} & 512 & 0.2907 & 0.0400 \\ \hline
-         \multirow{3}{*}{128} & 32 & 0.0638 & 0.0103 \\ \cline{2-4}
-         \multirow{3}{*}{} & 128 & 0.1401 & 0.0197 \\  \cline{2-4}
-         \multirow{3}{*}{} & 512 & 0.5242 & 0.0624 \\ \hline
-    \end{tabular}
-    \label{tab:my_label}
-\end{table}
+
 \subsection{安全性分析}
 考虑系统框架和工作流程，整体系统的安全性主要取决于两个因素：
 随机距离$R$和用户隐藏的坐标$(x,y)$。以下将具体论述这两者的安全性。\par
@@ -1054,6 +1056,26 @@ $[l_{\min}$,$l_{\max}]\subseteq[0, 10^3]\Rightarrow L_{\min}$,$L_{\max}\subseteq
 	\bibitem{czh_6.8}Wei J, Lin Y, Yao X, et al. Differential privacy-based location protection in spatial crowdsourcing[J]. IEEE Transactions on Services Computing, 2019, 15(1): 45-58.
 	
 	\bibitem{czh_5.1}张梦凡等.《2022中国卫星导航与位置服务产业发展白皮书》发布 北斗进入规模应用发展新阶段  [EB/OL] .光明网.（2022—02—19）[2023—04—09].https://tech.gmw.cn/2022-05/19/content\_35746711.htm
+
+  \bibitem{Merkle}Merkle R C. A certified digital signature[C]//Advances in cryptology—CRYPTO’89 proceedings. New York, NY: Springer New York, 2001: 218-238.
+
+  \bibitem{Fourty-two}Zhang J, Xie T, Zhang Y, et al. Transparent polynomial delegation and its applications to zero knowledge proof[C]//2020 IEEE Symposium on Security and Privacy (SP). IEEE, 2020: 859-876.
+
+  \bibitem{Eight}Bhadauria R, Fang Z, Hazay C, et al. Ligero++: A new optimized sublinear IOP[C]//Proceedings of the 2020 ACM SIGSAC Conference on Computer and Communications Security. 2020: 2025-2038.
+
+  \bibitem{seven}Ben-Sasson E, Chiesa A, Spooner N. Interactive oracle proofs[C]//Theory of Cryptography: 14th International Conference, TCC 2016-B, Beijing, China, October 31-November 3, 2016, Proceedings, Part II 14. Springer Berlin Heidelberg, 2016: 31-60.
+  
+  \bibitem{Thirty-nine}Reingold O, Rothblum G N, Rothblum R D. Constant-round interactive proofs for delegating computation[C]//Proceedings of the forty-eighth annual ACM symposium on Theory of Computing. 2016: 49-62.
+
+  \bibitem{six}Ben-Sasson E, Chiesa A, Riabzev M, et al. Aurora: Transparent succinct arguments for R1CS[C]//Advances in Cryptology–EUROCRYPT 2019: 38th Annual International Conference on the Theory and Applications of Cryptographic Techniques, Darmstadt, Germany, May 19–23, 2019, Proceedings, Part I 38. Springer International Publishing, 2019: 103-128.
+
+  \bibitem{three}Ben-Sasson E, Bentov I, Horesh Y, et al. Fast reed-solomon interactive oracle proofs of proximity[C]//45th international colloquium on automata, languages, and programming (icalp 2018). Schloss Dagstuhl-Leibniz-Zentrum fuer Informatik, 2018.
+
+  \bibitem{twelve}Camenisch J, Chaabouni R, Shelat A. Efficient protocols for set membership and range proofs[C]//Proceedings of the 14th International Conference on the Theory and Application of Cryptology and Information Security. Springer, 2008 (CONF): 234-252.
+
+  \bibitem{Thirty-five}Lyubashevsky V, Nguyen N K, Seiler G. Practical lattice-based zero-knowledge proofs for integer relations[C]//Proceedings of the 2020 ACM SIGSAC conference on computer and communications security. 2020: 1051-1070.
+
+  \bibitem{seventeen}Couteau G, Kloo$\beta$ M, Lin H, et al. Efficient range proofs with transparent setup from bounded integer commitments[C]//Advances in Cryptology–EUROCRYPT 2021: 40th Annual International Conference on the Theory and Applications of Cryptographic Techniques, Zagreb, Croatia, October 17–21, 2021, Proceedings, Part III. Cham: Springer International Publishing, 2021: 247-277.
 	
 	
 \end{thebibliography}
@@ -1280,7 +1302,7 @@ $[l_{\min}$,$l_{\max}]\subseteq[0, 10^3]\Rightarrow L_{\min}$,$L_{\max}\subseteq
 % \endgroup
 
 
-\bibliography{references}
+% \bibliography{references}
 
 
 \end{document}
