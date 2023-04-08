@@ -265,26 +265,7 @@ Keywords are a set of words or terms selected from the text to reveal the subjec
 \pagenumbering{arabic} %正文页码从1开始，用阿拉伯数字
 \setcounter{page}{1} 
 
-\section{作品概述}
-\setParDis
-\begin{spacing}{1.5}
-\subsection{研究背景与需求分析}
-\subsection{研究现状和替代方案}
-\subsection{本作品概述}
-\subsection{应用前景}
 
-\section{设计与实现}
-\subsection{系统设计}
-\subsection{核心技术}
-零知识证明
-\subsection{预备知识}
-\subsection{预备知识}
-
-\section{作品分析}
-\subsection{成果展示}
-\subsection{安全与性能测试}
-\subsection{创新点说明}
-\end{spacing}
 
 
 
@@ -432,10 +413,27 @@ $^{[czh\_1.4]}$在这样的环境下，如何保护位置信息的隐私安全�
 \fi 
 
 
-\subsection{研究内容与贡献(to be continued)}
+\subsection{作品概述与创新点说明(to be continued)}
+现有的位置隐私保护技术主要依靠添加虚假或者无关的位置信息，从而形成一个相对匿名的区域。用户实际位置信息隐藏在这个区域内，服务提供方和攻击者都难以从这个区域中采集用户的位置隐私。考虑到用户还是提交了位置信息，本文希望借鉴现有技术，提供一个用户在不暴露位置的同时获取服务的方法。
+\par 
+注意到区块链中的零知识证明技术具有正确性（证明结果可信）和零知识性（不会暴露关键信息）的优秀性质，并且这两个性质满足了位置隐私保护的需求，本文希望将零知识证明技术引入位置隐私保护，以改善现有模型。
+\par 
+零知识证明技术源于区块链中的Zcash货币应用体系。在用户之间进行交易前，付款的一方（prover）需要向另一方（verifier）证明自己的账户下有充足的余额。而零知识证明技术允许prover在证明自己账户余额足以完成交易的同时，保护prover自己的账户信息，防止敌手通过暴露的账户信息牟取利益。同时，零知识证明技术保证了verifier得到的证明结果是正确的，即verifier不会受到prover的欺骗。
+\par 
+本文借鉴了区块链中的零知识范围证明技术，对现有位置隐私保护系统进行改进优化，并提供一种在不提交用户位置信息的同时获取服务提供方服务的方法。具体创新成果如下。
 
-\subsection{章节安排(to be continued)}
+\subsubsection{将零知识范围证明技术应用到位置隐私保护}
+现有零知识范围证明技术主要应用于区块链领域，而在其他领域的应用相当有限。同时，零知识范围证明技术满足了隐私保护的需求，但是现有位置隐私保护方案尚未将零知识范围证明技术投入应用。基于以上现状，本文将零知识范围证明技术应用到位置隐私保护领域，一方面可以开拓零知识范围证明技术的应用场景，为零知识范围证明技术的应用创造更多的可能。而另一方面，引入零知识范围证明技术可以改进现有位置隐私保护系统，为保护位置隐私提供一种新的思路。
 
+\subsubsection{改进位置隐私保护系统的结构}
+引入零知识范围证明技术后，保护用户位置隐私不再需要第三方位置匿名服务器的参与，也不需要在多个用户端之间进行协作通信以达到匿名效果。同时，查询、提供服务与保护用户位置信息可以仅在移动用户端和服务提供商两方之间完成。所以本文在应用零知识范围证明技术的基础上，对现有位置隐私保护方案进行优化，改进了现有位置隐私保护系统的结构。
+
+
+
+
+\subsection{内容结构安排(to be continued)}
+
+\iffalse
 \subsection{前景扩展(to be merged)}
 兴趣点（Point of Interest）分析：【引用】
 兴趣点指的是用户周边地理实体，包括餐馆酒店、娱乐场所、商超银行、地铁公交等，可能是用户潜在感兴趣的消费地点。
@@ -447,154 +445,28 @@ $^{[czh\_1.4]}$在这样的环境下，如何保护位置信息的隐私安全�
 精确广告服务：
 广告商通过对用户精确位置和活动轨迹的分析，向用户投放精准定制化的广告，尤其是向用户推荐周边商户和服务。
 周边位置的购物折扣、餐饮娱乐和房屋租赁等广告可以很好切中用户需求，拉近周边商户与用户举例。
+\fi 
+
+\section{预备知识}
 
 
-\section{基础概念与预备知识}\label{基础概念与预备知识}
-\subsection{非负矩阵分解}
-\subsubsection{概念}
-非负矩阵是指每一个元素都是非负实数的矩阵。1999年Lee等人$^{[czh\_3.1]}$提出非负矩阵分解（Non-negative Matrix Factorization,NMF）算法，可以在丢失信息较少的条件下，对高维矩阵数据进行压缩，从而获得稠密的向量或数据。
-\par 
-给定$n \times m$维的数据矩阵$X \in \mathbb{R}^{n \times m}_+$，m代表数据样本数量，X中每一个列向量代表一个样本数据。$^{[czh\_3.2]}$NMF算法可以将高维矩阵X分解为两个低维非负矩阵，即
-
-\begin{equation}\label{非负矩阵分解1}
-	X \approx W H
-\end{equation}
-
-其中$W \in \mathbb{R}^{n \times r}_+, H \in \mathbb{R}^{r \times m}_+$分别代表系数矩阵、基矩阵。
-一般情况下r远小于n，即$r \times (m+n) < n \times m$。所以可以在基本保存原有数据特性的基础上，把原始矩阵压缩为系数矩阵，从而降低矩阵维数。
-
-\subsubsection{算法简介}
-NMF算法有两种常用的求解方式，分别是基于欧氏距离（Euclidian Distance, ED）的\textbf{Frobenius范数}和\textbf{广义KL散度}（Generalized Kullback-Leibler Divergrnce, GKLD）。以Frobenius范数的求解形式为例。
-\par 
-该算法需要最小化等式\ref{非负矩阵分解2}中目标函数。
-
-\begin{equation}\label{非负矩阵分解2}
-	F_{NMF} = \frac{1}{2} \| X - WH \|^2 _F = \frac{1}{2} \sum_{ij}(X_{ij} - WH_{ij})^2
-\end{equation}
-
-其中$X_{ij}$表示矩阵X中第i行第j列的元素，$\| \cdot \|^2_F$表示矩阵的Frobenius范数。
-\par 
-目标函数的迭代规则为：
-
-\begin{equation}\label{非负矩阵分解3}
-	W_{ik} \leftarrow W_{ik} \frac{XH^T_{ik}}{WHH^T_{ik}}
-\end{equation}
-
-\begin{equation}\label{非负矩阵分解4}
-	H_{kj} \leftarrow H_{kj} \frac{W^TX_{kj}}{W^THH_{kj}}
-\end{equation}	
-
-其中$i = 1,2\cdot \cdot \cdot n; j = 1,2\cdot \cdot \cdot m$。给定迭代终止条件后，对随机生成的初始非负矩阵$W_0,H_0$按式子\ref{非负矩阵分解3}和式子\ref{非负矩阵分解4}中的迭代规则交替迭代，直到满足终止条件，即可得到需要的W和H。$^{[czh\_3.3]}$
-
-\subsection{地理近邻矩阵}\label{地理近邻矩阵}
-在基于位置的社交网络（Location Based Social Network, LBSN）中，用户签到的地点被称为兴趣点（Point-of-Interest, POI）。通常位置临近的兴趣点被共同访问的可能性比较高，因此不同兴趣点在地理位置上的临近性成为了当前基于位置信息进行个性化推荐的一个重要指标。
-\par 
-为了描述不同兴趣点之间的地理临近性，本文引入一个地理近邻矩阵$^{[czh\_4.1]}$，并设置一个距离阈值s来刻画不同兴趣点之间的地理近邻性。矩阵中第i行第j列的元素$g_{ij}$表示第i个兴趣点和第j个兴趣点之间的近邻性。若i和j两个兴趣点之间的距离在区间[0, s]之间，则$g_{ij}=1$；否则$g_{ij}=0$。规定$g_{ii}=1$，即矩阵对角线上的元素为1。
-\par 
-地理近邻矩阵将在本文第\ref{作品设计与实现}章第\ref{关键技术}节中的地理信息模型中进行应用。
-
-\section{作品设计与实现}\label{作品设计与实现}
+\section{作品设计与实现}
+\subsection{需求分析}
 \subsection{系统概述}
-\subsection{关键技术}\label{关键技术}
-\subsubsection{基于非负矩阵分解的兴趣点推荐模型}
-在本文的位置隐私保护系统中，服务提供商初次返回分布在随机位置的若干服务，接着移动用户端对这些服务所代表的位置进行零知识范围证明，判断哪些服务的位置在用户所能接受的地理范围内，并将可以接受的位置返还给服务提供商。接下来，服务提供商就需要根据这些返回的位置，决定自己接下来要向用户提供哪些服务。
-\par 
-所以这一阶段服务提供商需要解决的问题可以转化为：已知若干个兴趣点（POI）的位置，如何根据已有兴趣点的位置，判断出用户可能想要前往的兴趣点？
-\par 
-考虑到大多数人的移动能力和行进心理，用户通常喜欢访问距离当前位置较近的兴趣点。为此，我们引入在本文第\ref{基础概念与预备知识}章第\ref{地理近邻矩阵}节所提到的\textbf{地理近邻矩阵}，在此基础上构建兴趣点推荐模型，来刻画不同兴趣点之间在地理上的近邻性，进而反映用户访问的不同兴趣点可能性的不同，达到为进行用户个性化推荐的效果。
-\par 
-下面将用一组简单数据来演示基于非负矩阵分解的地理信息模型。表\ref{经纬度}是各POI的经纬度，由此求出的各POI的地理距离如表\ref{距离}所示。假如我们设置距离阈值 s=80 km，则可以进一步求出表\ref{矩阵表}的地理近邻矩阵。
+\subsection{关键技术}
 
+\section{作品成果展示与可行性分析}
 
-\begin{table}[H]
-	\centering
-	\begin{minipage}{0.3\textwidth}
-		\centering
-		\small
-		\makeatletter\def\@captype{table}\makeatother
-		\caption{各POI经纬度} 
-		\label{经纬度}
-		\begin{tabular}{ccc}
-			\hline
-			POI & Latitude & Longitude \\
-			\hline
-			a & 39.5856 & 116.2041  \\
-			b & 40.0000 & 116.1221 \\
-			c & 39.5567 & 116.8354  \\
-			d & 39.0100 & 115.8324 \\
-			\hline
-		\end{tabular}
-	\end{minipage}\quad
-	\begin{minipage}{0.3\textwidth}
-		\centering
-		\small
-		\makeatletter\def\@captype{table}\makeatother
-		\caption{各POI距离(km)} 
-		\label{距离}
-		\begin{tabular}{|c|c|c|c|c|}
-			\hline
-			& a & b & c & d \\
-			\hline
-			a & 0 	& 46.6 & 54.2 & 71.6  \\
-			\hline 
-			b & 46.6 & 0	& 78.4 & 112.9  \\
-			\hline 
-			c & 54.2 & 78.4 & 0 	& 105.6  \\
-			\hline 
-			d & 71.6 & 112.9 & 105.6 	& 0  \\
-			\hline 
-		\end{tabular} 
-	\end{minipage}\quad
-	\begin{minipage}{0.3\textwidth}
-		\centering
-		\small
-		\makeatletter\def\@captype{table}\makeatother
-		\caption{地理近邻矩阵}
-		\label{矩阵表}
-		\begin{tabular}{|c|c|c|c|c|}
-			\hline
-			& a & b & c & d \\
-			\hline
-			a & 1 & 1 & 1 & 1  \\
-			\hline 
-			b & 1 & 1 & 0 & 0  \\
-			\hline 
-			c & 1 & 0 & 1 & 0  \\
-			\hline 
-			d & 1 & 0 & 0 & 1  \\
-			\hline 
-		\end{tabular} 
-	\end{minipage}
-	\vspace{-5pt}
-\end{table}
+\section{前景展望}
 
-经过上述步骤，我们已经构造出了地理近邻矩阵。但是还需要注意到，现实生活中各种服务在地理位置上并不是均匀分布，所以经过以上步骤得到的地理近邻矩阵实际上是一个相当稀疏的矩阵。如果直接将这个矩阵融入我们的兴趣点推荐模型，得到的推荐结果效果会有巨大的提升空间。
-\par 
-为了充分利用兴趣点在地理上的近邻特征，本文采用非负矩阵分解的方法，对得到的地理近邻矩阵进行降维处理，使兴趣点的位置信息从稀疏的高维向量转化为稠密的低维向量，方便后续操作。具体的，可以把上述得到的地理近邻矩阵$G \in \mathbb{N}^{N \times N}$
-分解成基矩阵$E_g \in \mathbb{R}^{N \times d_g}$
-和系数矩阵$H_g \in \mathbb{R}^{d_g \times N}$，实现降维处理，即
+\section{结论}
 
-\begin{equation}
-	G \approx E_g H_g
-\end{equation}
+\section{参考文献}
 
-本文使用基于Frobenius范数的损失函数，函数计算公式如下式\ref{损失函数}所示$^{[czh\_4.1]}$。其中$d_g\text{是}E_g$中隐向量的维度，$\| \cdot\|_F$是矩阵Frobenius范数，$\| \cdot\|_1$是$L_1$范数，
-$\partial _g$是$L_1$和$L_2$正则化参数，$\rho _g$是$L_1$正则化占总正则化的比例。公式中的误差优化通过随机梯度下降实现。
-
-\begin{equation}
-	\label{损失函数}
-	\begin{aligned}
-		\underbrace{arg\, min}_{W_g, H_g} \frac{1}{2} \bigg[ \|G-E_gH_g\|^2_F + 
-		\partial _g \rho _g \|E_g\|_1 + \partial _g \rho _g \|H_g\|_1 \\
-		+ \frac{\partial _g(1-\rho _g)}{2}\|E_g\|^2_F 
-		+ \frac{\partial _g(1-\rho _g)}{2}\|H_g\|^2_F  \bigg]
-	\end{aligned}
-\end{equation}
-
-完成分解后，$E_g$的行向量即为兴趣点的地理近邻特征向量。对于多个兴趣点，即便它们之间不存在直接意义上的地理近邻性，非负矩阵分解也可以得出它们之间间接的近邻性，从而为兴趣点推荐提供判断依据。
 
 
 %********************格式要求********************
+\section{——————模板分割线——————}
 \section{简介}
 \setParDis %设置段间距为 0
 \begin{spacing}{1.5}
