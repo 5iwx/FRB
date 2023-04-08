@@ -7,27 +7,26 @@
 \contentsline {section}{\numberline {一、}作品概述}{1}{}%
 \contentsline {subsection}{\numberline {（一）}研究背景与意义}{1}{}%
 \contentsline {subsection}{\numberline {（二）}研究现状}{2}{}%
-\contentsline {subsubsection}{\numberline {1.}集中式结构}{2}{}%
-\contentsline {subsubsection}{\numberline {2.}分布式结构}{3}{}%
-\contentsline {subsubsection}{\numberline {3.}混合结构}{3}{}%
-\contentsline {subsection}{\numberline {（三）}作品概述与创新点说明}{5}{}%
-\contentsline {subsubsection}{\numberline {1.}将零知识范围证明技术应用到位置隐私保护}{5}{}%
+\contentsline {subsubsection}{\numberline {1.}位置隐私保护系统结构}{2}{}%
+\contentsline {subsubsection}{\numberline {2.}位置隐私保护技术}{3}{}%
+\contentsline {subsection}{\numberline {（三）}作品概述与创新点说明}{4}{}%
+\contentsline {subsubsection}{\numberline {1.}将零知识范围证明技术应用到位置隐私保护}{4}{}%
 \contentsline {subsubsection}{\numberline {2.}改进现有系统的结构}{5}{}%
-\contentsline {subsection}{\numberline {（四）}内容结构安排(to be continued)}{6}{}%
-\contentsline {section}{\numberline {二、}预备知识}{6}{}%
-\contentsline {subsection}{\numberline {（一）}随机数生成}{6}{}%
-\contentsline {subsection}{\numberline {（二）}范围证明的理论基础}{6}{}%
-\contentsline {subsubsection}{\numberline {1.}默克尔树}{6}{}%
-\contentsline {subsubsection}{\numberline {2.}里得·所罗门编码}{7}{}%
+\contentsline {subsection}{\numberline {（四）}内容结构安排(to be continued)}{5}{}%
+\contentsline {section}{\numberline {二、}预备知识}{5}{}%
+\contentsline {subsection}{\numberline {（一）}随机数生成}{5}{}%
+\contentsline {subsection}{\numberline {（二）}范围证明的理论基础}{5}{}%
+\contentsline {subsubsection}{\numberline {1.}默克尔树}{5}{}%
+\contentsline {subsubsection}{\numberline {2.}里得·所罗门编码}{6}{}%
 \contentsline {subsubsection}{\numberline {3.}诚实验证方前提的零知识证明}{7}{}%
 \contentsline {subsubsection}{\numberline {4.}交互式谕示机证明}{8}{}%
 \contentsline {subsubsection}{\numberline {5.}单变量求和校验协议}{9}{}%
-\contentsline {subsubsection}{\numberline {6.}低度检测和FRI}{10}{}%
+\contentsline {subsubsection}{\numberline {6.}低度检测和FRI}{9}{}%
 \contentsline {subsubsection}{\numberline {7.}向量内积论证}{10}{}%
-\contentsline {section}{\numberline {三、}作品设计与实现}{11}{}%
-\contentsline {subsection}{\numberline {（一）}系统概述}{11}{}%
-\contentsline {subsection}{\numberline {（二）}需求分析}{11}{}%
-\contentsline {subsubsection}{\numberline {1.}功能需求}{11}{}%
+\contentsline {section}{\numberline {三、}作品设计与实现}{10}{}%
+\contentsline {subsection}{\numberline {（一）}系统概述}{10}{}%
+\contentsline {subsection}{\numberline {（二）}需求分析}{10}{}%
+\contentsline {subsubsection}{\numberline {1.}功能需求}{10}{}%
 \contentsline {subsubsection}{\numberline {2.}性能需求}{11}{}%
 \contentsline {subsection}{\numberline {（三）}系统说明}{12}{}%
 \contentsline {subsection}{\numberline {（四）}基于哈达玛积的问题转化}{14}{}%
@@ -45,18 +44,18 @@
 \contentsline {section}{\numberline {五、}前景展望}{24}{}%
 \contentsline {section}{\numberline {六、}结论}{24}{}%
 \contentsline {section}{\numberline {七、}参考文献}{24}{}%
-\contentsline {section}{\numberline {八、}——————模板分割线——————}{24}{}%
-\contentsline {section}{\numberline {九、}简介}{24}{}%
-\contentsline {section}{\numberline {十、}论文的书写规范}{25}{}%
-\contentsline {subsection}{\numberline {（一）}字体和字号}{25}{}%
-\contentsline {subsection}{\numberline {（二）}页边距及行距}{25}{}%
-\contentsline {subsection}{\numberline {（三）}页眉}{25}{}%
-\contentsline {subsection}{\numberline {（四）}页码}{26}{}%
-\contentsline {subsection}{\numberline {（五）}图、表及其附注}{26}{}%
-\contentsline {subsubsection}{\numberline {1.}图}{26}{}%
-\contentsline {subsubsection}{\numberline {2.}表}{26}{}%
-\contentsline {subsubsection}{\numberline {3.}附注}{26}{}%
-\contentsline {subsubsection}{\numberline {4.}参考文献}{26}{}%
-\contentsline {section}{\numberline {十一、}图表模板}{27}{}%
-\contentsline {section}{结论}{27}{}%
+\contentsline {section}{\numberline {八、}——————模板分割线——————}{26}{}%
+\contentsline {section}{\numberline {九、}简介}{26}{}%
+\contentsline {section}{\numberline {十、}论文的书写规范}{26}{}%
+\contentsline {subsection}{\numberline {（一）}字体和字号}{26}{}%
+\contentsline {subsection}{\numberline {（二）}页边距及行距}{27}{}%
+\contentsline {subsection}{\numberline {（三）}页眉}{27}{}%
+\contentsline {subsection}{\numberline {（四）}页码}{27}{}%
+\contentsline {subsection}{\numberline {（五）}图、表及其附注}{27}{}%
+\contentsline {subsubsection}{\numberline {1.}图}{27}{}%
+\contentsline {subsubsection}{\numberline {2.}表}{27}{}%
+\contentsline {subsubsection}{\numberline {3.}附注}{28}{}%
+\contentsline {subsubsection}{\numberline {4.}参考文献}{28}{}%
+\contentsline {section}{\numberline {十一、}图表模板}{28}{}%
+\contentsline {section}{结论}{30}{}%
 \contentsfinish 
