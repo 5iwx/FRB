@@ -410,7 +410,7 @@ $a\odot b=(a_1,\ldots,a_k)\odot(b_1,\ldots,b_k)=(a_1b_1,\ldots,a_kb_k)$。$bi()$
 围证明了。其中的具体原理，详见下一章关于零知识范围证明的介绍。
 \subsection{范围证明的理论基础}
 \subsubsection{默克尔树}
-默克尔树（Merkle Tree or Hash Tree）是一棵用哈希值搭建起来的树，树的所有节点都存
+默克尔树\cite{Merkle}（Merkle Tree or Hash Tree）是一棵用哈希值搭建起来的树，树的所有节点都存
 储了哈希值。整棵树包含根节点、中间节点和叶节点。树采取自下而上的生成方式，叶节点经
 哈希运算得到哈希值，而其余节点的哈希值均由其子节点的哈希值经哈希计算得到。默克尔树
 的具体结构见图\ref{Merkle}。
@@ -434,7 +434,7 @@ $a\odot b=(a_1,\ldots,a_k)\odot(b_1,\ldots,b_k)=(a_1b_1,\ldots,a_kb_k)$。$bi()$
 \end{itemize}
 
 \subsubsection{里得·所罗门编码}
-里得·所罗门编码（Reed-Solomon Code, RS Code）是一种编码方式，用其编码的码字是域上
+里得·所罗门编码\cite{Fourty-two}\cite{Eight}（Reed-Solomon Code, RS Code）是一种编码方式，用其编码的码字是域上
 某个特定单变量多项式的一组函数值，表示成向量的形式。因此，在本文中我们使用RS\;Code来编码
 向量。\par
 用抽象代数的模型来定义，选择一个$\;q\;$阶的有限域$\mathbb{F}$，作为编码的字母表。
@@ -457,7 +457,7 @@ $\hat{p}|_H=\{\hat{p}(\xi_1),\cdots,\hat{p}(\xi_{|H|})\}=v$。然后计算$\hat{
 算法三元组$(\mathcal{G}, \mathcal{P}, \mathcal{V})$。其中$\mathcal{G}$表示
 公共参数生成算法，设其输出为pp；$\mathcal{P}$和$\mathcal{V}$分别表示非确定多
 项式时间（Probabilistic Polynomial Time, PPT）的证明算法和验证算法。\par
-诚实验证方前提的零知识证明具有以下条件需要满足：
+诚实验证方前提的零知识证明\cite{Fourty-two}具有以下条件需要满足：
 \begin{itemize}
   \item \textbf{\emph{完备性（Completeness）}}：即正确的论断都可以被证明为正确。假设$\lambda$为私有参数，
       对于每个$\mathcal{G}$的输出pp$\leftarrow\mathcal{G}(1^{\lambda})$，每
@@ -482,14 +482,14 @@ $\hat{p}|_H=\{\hat{p}(\xi_1),\cdots,\hat{p}(\xi_{|H|})\}=v$。然后计算$\hat{
 \end{itemize}
 
 \subsubsection{交互式谕示机证明}
-交互式谕示机证明（Interactive Oracle Proof, IOP）是一种证明系统模型，在其中验证方可以通过谕示机概率性地问询证明方所持有的
+交互式谕示机证明\cite{seven}\cite{Thirty-nine}（Interactive Oracle Proof, IOP）是一种证明系统模型，在其中验证方可以通过谕示机概率性地问询证明方所持有的
 关于被证明的论断的有效信息，但由于是概率性地问询，所以验证方并不能得到证明方的全部信息。\par
 同样，使用计算复杂度理论的模型来定义，IOP是证明$\;k\;$轮NP二元关系的算法三元组$(\mathcal{G},\mathcal{P},\mathcal{V})$，其中
 $\mathcal{G}$表示公共参数生成算法，设其输出为pp；$\mathcal{P}$和$\mathcal{V}$分别表示PPT证明算法和验证算法。具体而言，一个$\;k\;$轮的IOP包含$\;k\;$
 轮的交互（interaction）。在第$\;i\;$轮（$0<i\le k$），验证方向证明方均匀且随机地发送消息$m_i$，且验证方能够通过谕示机得到
 以$\;m_i\;$为输入的输出，证明方需返回$\;\pi_i\;$给验证方。在最后一轮，验证方得到了证明方返回的$\;k\;$个位置的信息
 $\;\pi=(\pi_1,\cdots,\pi_k)$，并且需决定接受或拒绝证明方的证明（Proof）。\par
-交互式谕示机证明具有以下条件需要满足：
+交互式谕示机证明\cite{six}具有以下条件需要满足：
 \begin{itemize}
   \item \textbf{\emph{完备性（Completeness）}}：对于每个pp$\leftarrow\mathcal{G}(1^{\lambda})$以及$(x,\omega)\in\mathcal{R}$，有：
         \[\text{Pr}[\langle \mathcal{P}(\omega),\mathcal{V}^{\pi}\rangle(\text{pp},x)=1]=1\]
@@ -509,7 +509,7 @@ $H, L\subset \mathbb{F}\;(|L|>|H|)$，一个小于$k(k>|H|)$阶的单变量多�
 接着，基于对$\hat{f}|_L$和$\hat{h}|_L$的谕示机访问，验证方可以验证是否有$\hat{p}|_L\in\text{RS}(L,\frac{|H|-1}{|L|})$
 以及$\hat{h}|_L\in\text{RS}(L,\frac{|L|-|H|}{|L|})$，其中：
 \begin{equation}\hat{p}(x)=\dfrac{|H|\cdot\hat{f}(x)-\mu-|H|\cdot\hat{Z_H}(x)\hat{h}(x)}{x}\end{equation}
-以上采用RS编码的IOP满足正确性和完备性，当我们将它转换为一个标准IOP时，它仍然是在检验
+以上采用RS编码的IOP满足正确性和完备性\cite{six}，当我们将它转换为一个标准IOP时，它仍然是在检验
 谕示$\hat{f}|_L,\hat{h}|_L,\hat{p}|_L$是否为具有相应
 度的界限的RS码。而这个过程可以通过下面的低度检测协议来完成。
 
@@ -517,7 +517,7 @@ $H, L\subset \mathbb{F}\;(|L|>|H|)$，一个小于$k(k>|H|)$阶的单变量多�
 给定度$k_1,\cdots,k_t$，码字$\hat{v}_1|_L,\cdots,\hat{v}_t|_L$，其中$L$为一个乘法陪集，低度检测协议允许验证方借助对这些码字的谕示机访问来检验以下语句是否成立：
 \begin{equation}\forall j\in\{0,\cdots,t\},\;\hat{v}_j|_L\in\text{RS}[L,\frac{k_j}{|L|}]\label{低度检测}\end{equation}\par
 公式（\ref{低度检测}）用于检测编码给定码字的编码多项式的度是否低于给定的度。\par
-在本文中，我们的低度检测协议选取快速Reed-Solomon交互式谕示机邻近证明（Fast Reed-Solomon Interactive Oracle Proof of Proximity, Fast RS IOPP, FRI）。
+在本文中，我们的低度检测协议选取快速Reed-Solomon交互式谕示机邻近证明\cite{three}（Fast Reed-Solomon Interactive Oracle Proof of Proximity, Fast RS IOPP, FRI）。
 给定对证明方消息$\;l\;$处取值的谕示机访问，该FRI 是具有完整性（Completeness）和正确性（Soundness）容错率为
 $O(\frac{L}{\mathbb{F}})+\text{negl}(l,k)$的IOPP，其中$l=O(\lambda),k=\max\{k_1,\cdots,k_t\}$。\par
 总的来说，用于实现单变量求和校验的FRI协议可以表示为：
@@ -542,7 +542,7 @@ $\hat{f}=f_0+f_1x+\cdots+f_nx^n$表示为向量$\vec{f}=(f_0,f_1,\cdots,f_n)$
 \subsubsection{批处理向量内积论证}
 为了实现批处理IPA（Batch Inner Product Argument, B-IPA），我们考虑单变量求和校验协议的
 一个性质：无论多个多项式的阶数是否相同，单变量求
-和校验协议都支持校验每一个一元多项式的和。此性质
+和校验协议都支持校验每一个一元多项式的和\cite{six}。此性质
 为构造一个校验编码向量间内积关系的IPA提供了一种
 可能，其中编码向量来自于不同阶数的编码多项式。\par
 特别地，将阶数分别为$k_1,...,k_t$的秘密编码多项式
@@ -594,7 +594,7 @@ $\hat{q}=\sum\limits_{j=1}^t\beta_j\hat{v}_j\cdot\hat{r}_j$。
         \end{equation}
         批处理IPA的知识论证属性来源于默克尔树的可抽取性。给定默克尔树树根和足够多的验证通路，总存在一个高效的方法
         能够抽取默克尔树上所有被承诺的叶节点。一旦这些叶节点被成功提取，就能通过IFFT算法获取满足$|L|>k_{\max}$的
-        秘密多项式，进而实现知识论证的属性。
+        秘密多项式，进而实现知识论证的属性\cite{seven}\cite{Fourty-two}。
 \end{itemize}\par
 图\ref{B-IPA流程} 展示了在批处理IPA中，证明方与验证方进行交互、证明方向验证方证明$(x,\omega)\in\mathcal{R}_{\text{B-IPA}}$
 的流程。\par
@@ -676,7 +676,8 @@ $L,H$是$\mathbb{F}$的乘法陪集。秘密值$V$满足$V\in[0,u^n-1]$。
 \subsubsection{对于任意范围的范围证明}
 考虑到实际整数范围证明往往是任意整数，我们需要进一步拓宽前述范围证明的通用性。
 为了实现这一点，我们需要利用前述的对范围$[0,u^n-1]$的范围证明。
-假设要验证秘密值$V\in[A,B-1]$,其中$A,B$均为任意整数，我们首先将这个问题进行如下转化：
+假设要验证秘密值$V\in[A,B-1]$,其中$A,B$均为任意整数。收到Camenisch\cite{twelve}等人的启发，
+我们首先将这个问题进行如下转化：
 \begin{equation}V-A\in [0,u^n-1]\wedge V-B+u^n\in [0,u^n-1]\end{equation}\par
 其中$u^{n-1}<B<u^n$。基于新的公式，我们成功将任意整数范围的证明转化到了
 范围$[0,u^n-1]$的证明上，从而我们可以利用前述的对范围$[0,u^n-1]$的范围证明来
@@ -694,12 +695,12 @@ $L,H$是$\mathbb{F}$的乘法陪集。秘密值$V$满足$V\in[0,u^n-1]$。
   \item PRI协议环节：在验证方借助$O(\log{|L|})$轮对码字$\hat{v}_1|_L,\cdots,\hat{v}_L|_L$
         的谕示机访问时，验证方可以根据这些已得的信息获取额外的其他信息。
 \end{itemize}\par
-因此，我们采取与相似的处理。\par
+因此，我们采取与张、谢等人\cite{Fourty-two}相似的处理。\par
 对于第一个知识泄露，我们使证明者采取以下措施：
 选择一个度为$l$的随机多项式$\hat{\delta}_j$，利用其掩盖$\hat{v}_j$，即
 $\hat{v}^{\prime}_j=\hat{v}_j+\hat{Z}_H\cdot\hat{\delta}_j$，其中$\hat{Z}_H$是
 陪集$H$上的“消失”多项式，即对$\forall h\in H,\hat{Z}_H(h)=0$.\par
-对于第二个知识泄露，我们使证明者采取同样的措施，即使用随即多项式$hat{\gamma}$来掩盖
+对于第二个知识泄露，我们使证明者采取同样的措施，即使用随机多项式$\hat{\gamma}$来掩盖
 秘密多项式$\hat{v}$，并控制$\hat{\gamma}$的度在$(u_{\max}+1)|H|+u_{\max}(l-1)$。
 基于以上处理，我们给出批处理的零知识范围证明的流程，如图（\ref{ZKRP流程}）所示。
 \begin{figure}[H]
@@ -814,28 +815,28 @@ $\hat{v}^{\prime}_j=\hat{v}_j+\hat{Z}_H\cdot\hat{\delta}_j$，其中$\hat{Z}_H$�
 \newpage
 
 % XSP 2023/3/16: bib支持不全，暂时改为手动
-\section*{参考文献} % section*生成无标号章节题目
-\addcontentsline{toc}{section}{参考文献} % 将无标号章节添加至目录
-% 著作: [序号]作者．书名[标识码]．出版地：出版社，出版年．
-[1]张志建．严复思想研究[M]．桂林：广西师范大学出版社，1989． 
+% \section*{参考文献} % section*生成无标号章节题目
+% \addcontentsline{toc}{section}{参考文献} % 将无标号章节添加至目录
+% % 著作: [序号]作者．书名[标识码]．出版地：出版社，出版年．
+% [1]张志建．严复思想研究[M]．桂林：广西师范大学出版社，1989． 
 
-% 译著: [序号]国名或地区（用圆括号）原作者．书名[标识码]．译者．出版地：出版社，出版年．
-[2]（英）霭理士．性心理学[M]．潘光旦译．北京：商务印书馆，1997．
+% % 译著: [序号]国名或地区（用圆括号）原作者．书名[标识码]．译者．出版地：出版社，出版年．
+% [2]（英）霭理士．性心理学[M]．潘光旦译．北京：商务印书馆，1997．
 
-% 古典文献 文史古籍类引文后加序号，再加圆括号，内加注书名、篇名
+% % 古典文献 文史古籍类引文后加序号，再加圆括号，内加注书名、篇名
 
-% 论文集: [序号]编者．书名[标识码]．出版地：出版社，出版年．
-[3]伍蠡甫．西方论文选（下册）[C]．上海：上海译文出版社，1979．
+% % 论文集: [序号]编者．书名[标识码]．出版地：出版社，出版年．
+% [3]伍蠡甫．西方论文选（下册）[C]．上海：上海译文出版社，1979．
 
-% 期刊文章: [序号]作者．篇名[标识码]．刊名，年，（期）．
-[4]叶朗．《红楼梦》的意蕴[J]．北京大学学报（哲学社会科学版），1989，（2）
+% % 期刊文章: [序号]作者．篇名[标识码]．刊名，年，（期）．
+% [4]叶朗．《红楼梦》的意蕴[J]．北京大学学报（哲学社会科学版），1989，（2）
 
-% 报纸文章: [序号]作者．篇名[标识码]．报纸名，出版日期（版次）
-[5]谢希德．创造学习的新思路[N]．人民日报，1998-12-25（10）
+% % 报纸文章: [序号]作者．篇名[标识码]．报纸名，出版日期（版次）
+% [5]谢希德．创造学习的新思路[N]．人民日报，1998-12-25（10）
 
-% 外文文献: 要求外文文献所表达的信息和中文文献一样多，但文献类型标识码可以不标出。
-[6]Mansfeld, R.S. \& Busse. \textit{T.V. The Psychology of creativity and discovery}, Chinago：
-NelsonHall, 1981
+% % 外文文献: 要求外文文献所表达的信息和中文文献一样多，但文献类型标识码可以不标出。
+% [6]Mansfeld, R.S. \& Busse. \textit{T.V. The Psychology of creativity and discovery}, Chinago：
+% NelsonHall, 1981
 
 
 
@@ -848,7 +849,7 @@ NelsonHall, 1981
 % \end{adjustwidth}
 % \endgroup
 
-\bibliographystyle{IEEEtranN}
+
 \bibliography{references}
 
 
