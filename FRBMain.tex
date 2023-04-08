@@ -4,6 +4,8 @@
 \usepackage[normalem]{ulem}
 \useunder{\uline}{\ul}{}
 %********************导言区宏包引入********************
+\usepackage{booktabs}
+\usepackage{threeparttable}
 \usepackage{cite}
 \usepackage{xeCJK}
 \usepackage{amssymb}
@@ -206,40 +208,24 @@ BoldItalicFont = times-new-roman-bold-italic.ttf
 \section*{摘要}
 \begin{spacing}{1.5}
   \setParDis %设置段间距为 0
-  本Latex模板是北京航空航天大学大学第三十三届“冯如杯”竞赛主赛道论文模板, 由北京航空航天大学校团委
-基于GitHub用户\textbf{\textit{Somedaywilldo}}与\textbf{\textit{cpfy}}的成果迭代
-开发而来。在此由衷感谢所有开发者对本模板的贡献与对“冯如杯”竞赛的大力支持。
-
-摘要内容包括：“摘要”字样，摘要正文，关键词。在摘要的最下方另起一行，用显著的字符注明文本的关键词。
-
-摘要是论文内容的简短陈述，应体现论文工作的核心思想。摘要一般约500字。摘要内容应涉及本项科研工作的目的和意义、研究思想和方法、研究成果和结论。
-
-关键词是为用户查找文献，从文中选取出来用来揭示全文主题内容的一组词语或术语，应尽量采用词表中的规范词（参照相应的技术术语标准）。关键词一般为3到8个，按词条的外延层次排列。关键词之间用逗号分开，最后一个关键词后不打标点符号。
-
+  近年来，移动用户数量迅猛增长，对基于GPS定位的位置服务需求也不断增加。位置服务的广泛使用虽然让生活更加便利，但也带来了用户位置隐私泄露的安全问题。对恶意攻击者而言，泄露的位置隐私可能会间接导致用户的行为习惯、具体身份、社交信息等敏感信息的泄露，进而影响到用户的实际生活。在当前网络环境中，首先用户对位置隐私的保护意识不足或者缺少有效保护手段，其次在app等软件使用过程中存在不少位置服务的滥用现象，最后随着大数据、人工智能等技术的发展，保护位置隐私的难度也随之增大。当下需要一种新的位置隐私保护技术来解决以上问题。\par
+本作品立足于个人位置的隐私保护，提出了一种全新的范围定位技术。利用零知识范围证明技术，在隐藏个人位置的前提下，向服务方证明用户处于一定精度的空间范围内，从而使服务方不再需要用户的具体位置而能够提供一些范围性的服务。由于证明技术的零知识特性，服务方无法通过证明过程和结果来获取用户的具体位置，从而将用户位置与服务方隔绝，有效保护了用户的位置隐私。同时由于作品中零知识范围证明是后量子安全的，新的范围定位技术拥有很高的安全性，能够有效抵抗量子计算级别的攻击，极大降低了恶意攻击者破解范围证明系统的可能性。\par
+本作品的核心技术在于零知识协议的高效性。为了贴合现实位置服务的频繁性，设计了零知识体系中更为高效的内积论证与范围证明协议。在具体通信复杂度、具体证明复杂度和具体验证复杂度三项主要指标上，本文零知识范围证明均有不错的表现，足以满足实际需求。在数据量达到48KB以上时，本设计的证明大小将优于网络安全和系统安全旗舰会议ACM \quad CCS\quad 2020中Lyubashevsky等人的基于格的零知识证明方案。在批处理设置中的 1000 个实例中，本文零知识范围证明大小远远优于公钥密码学顶级会议EUROCRYPT \quad 2021中Couteau等人的零知识证明方案，同数据规模下空间占用率减小约90 \%。\par
+本作品将有助于解决位置服务现有痛点，重塑“互联网+位置隐私保护”的服务理念和完善服务质量。随着市场规模日益增长，应用前景非常广阔。\par
 \end{spacing}
     
-\textbf{关键词：}关键词1，关键词2，关键词3，关键词4，关键词5
-
+\textbf{关键词：}GPS定位，零知识范围证明，向量内积论证，交互式谕示证明
 \newpage
 \section*{\textbf{Abstract}} % XSP 2023/3/8: Abstract 加粗
 \begin{spacing}{1.5}
 \begin{adjustwidth}{0.42cm}{0.42cm}
   \setParDis %设置段间距为 0
 
-\qquad This Latex template for the 33rd Fengru Cup Competition of 
-Beihang University, is developed by Communist Youth League Committee of BUAA 
-iteratively based on the contribution of GitHub 
-users \textbf{\textit{Somedaywilldo}} and \textbf{\textit{cpfy}}. 
-Here, we would like to thank all the developers for their 
-contributions to this template and for their support of the Fengru Cup Competition.
-
-The abstract includes: the word "Abstract", the body of the abstract, and the keywords. On a separate line at the bottom of the abstract, indicate the key words of the text in prominent characters.
-
-The abstract is a short statement of the content of the paper and should reflect the core ideas of the paper work. The abstract is usually about 500 words. The abstract should cover the purpose and significance of this scientific work, research ideas and methods, research results and conclusions.
-
-Keywords are a set of words or terms selected from the text to reveal the subject content of the whole text for the user to find the literature, and the standardized words in the word list (refer to the corresponding technical terminology standards) should be used as much as possible. The keywords are usually 3 to 8, arranged according to the level of extensibility of the words. The keywords are separated by commas, and no punctuation marks are used after the last keyword.
-
-\textbf{Keywords: Keywords 1, Keywords 2, Keywords 3, Keywords 5, Keywords 6}
+\qquad In recent years, the number of mobile users has grown rapidly, with the increasing demand for location services based on GPS location . Although the widespread use of location services makes life more convenient, it also brings the security problem of user location privacy leakage. For malicious attackers, the leaked location privacy may indirectly lead to the disclosure of sensitive information such as users' behavior habits, specific identities, and social information, which in turn affects the actual life of users. In the current network environment, first of all, users have insufficient awareness of location privacy protection or lack of effective protection means. Secondly, there are many abuse of location services in the use of software such as apps. And finally, with the development of big data, artificial intelligence and other technologies, the difficulty of protecting location privacy has also increased. A new location privacy technology is needed to solve these problems.\par
+Based on the privacy protection of personal location, this work proposes a new range positioning technology. Using zero-knowledge range proof technology, under the premise of hiding personal location, it proves to the service that the user is within a certain accuracy of the space, allowing the service party no longer needs the user's specific location and can provide some range services. Due to the zero-knowledge nature of the proof technology, the service provider cannot obtain the specific location of the user through the proof process and result, thereby isolating the user's location from the service party and effectively protecting the user's location privacy. At the same time, because the zero-knowledge range proof in the work is post-quantum safe, the new range positioning technology has high security, which can effectively resist quantum computing-level attacks and greatly reduces the possibility of malicious attackers cracking the range proof system.\par
+The core technology of this work lies in the efficiency of zero-knowledge protocols. In order to fit the frequency of real-world location services, a more efficient inner product argument and range proof protocol in zero-knowledge system is designed. In the three main indicators of specific communication complexity, specific proof complexity and specific verification complexity, the zero-knowledge range proof in this paper has good performance, which is sufficient to meet the actual needs. When the data volume reaches more than 48KB, the proof size of this design will be better than the lattice-based zero-knowledge proof scheme of Lyubashevsky et al. in ACM CCS 2020, the flagship conference on cybersecurity and system security. Among the 1000 instances in the batch setting, the zero-knowledge range proof size in this paper is far better than the zero-knowledge proof scheme of Couteau et al. in EUROCRYPT 2021, the top conference on public key cryptography, and the space occupancy rate is reduced by about 90\% under the same data scale.\par
+This work will help solve the existing pain points of location services, reshape the service concept of "Internet + location privacy protection" and improve service quality. With the growing market size, the application prospects are very broad.\par
+\textbf{Keywords: }GPS positioning, zero-knowledge range proof,Inner Product Argument, Interactive Oracle Proof
 \end{adjustwidth}
 \end{spacing}
 
@@ -448,7 +434,15 @@ $^{[czh\_1.4]}$在这样的环境下，如何保护位置信息的隐私安全�
 
 %********************预备知识********************
 \section{预备知识}
-简单技术背景介绍
+本部分主要介绍零知识范围证明涉及的基础知识，
+包括八个部分，依次为Blum-Blum-Shub算法、
+默克尔树、里德$\cdot$所罗门编码、零知识证明ZKAoK，
+交互式谕示机证明IOP,单变量和校验协议、FRI低度检测和向量内积论证。
+其中，Blum-Blum-Shub算法用于随机数$R$的生成,默克尔树用于对秘密向量的承诺和实现谕示机的问询，
+里德$\cdot$所罗门编码用于编码向量，零知识证明ZKAoK阐述零知识证明的性质，
+IOP用于证明和验证双方之间$k$轮的交互证明，单变量和校验协议用于验证集合上多项式值的和，
+FRI低度检测用于判断多项式的阶数，最后的向量内积证明则用于向量的承诺。
+对以上知识的基本理解，将有助于进一步认识零知识范围证明及其对应的构造过程。
 \subsection{随机数生成}
 
 \subsection{范围证明的理论基础}
@@ -475,9 +469,6 @@ $^{[czh\_1.4]}$在这样的环境下，如何保护位置信息的隐私安全�
   \item $(\{v_i\}_{i\in\mathcal{I}},\pi^v_{\mathcal{I}})\leftarrow\text{MT.Open}(\mathcal{I},v)$
   \item $\{1,0\}\leftarrow\text{MT.Verify}(\text{root}_v,\mathcal{I},\{v_i\}_{i\in\mathcal{I}},\pi^v_{\mathcal{I}})$
 \end{itemize}
-=========
-\section{公式模板}
->>>>>>>>> Temporary merge branch 2
 
 \subsubsection{里得·所罗门编码}
 里得·所罗门编码\cite{Fourty-two}\cite{Eight}（Reed-Solomon Code, RS Code）是一种编码方式，用其编码的码字是域上
@@ -657,12 +648,13 @@ $\hat{f}=f_0+f_1x+\cdots+f_nx^n$表示为向量$\vec{f}=(f_0,f_1,\cdots,f_n)$
 ，因此这两个坐标同样采用经纬度形式。同时为了兼顾一定的准确性，在经纬度精度上，本文选
 取4位小数作为参考样例,即$x_1$,$x_2$,$y_1$,$y_2$均为五位小数。此时最大误差大概是
 在$5$米左右。当然，如果需要让结果进一步精确，仍可以进一步调整精度。\par
-要判断坐标$S$是否在坐标$P$的一定范围内，我们可以参考平面中心圆模型。通过判断两者间的
-距离$R$是否处于一定数值范围内，即可检验坐标间关系是否满足要求。为了使问题更加明确，
-本文中用符号$l_{\min}$,$l_{\max}$分别来表示距离的下界和上界,且均为整数。其中整数的
-选取主要为了更好地运用零知识范围证明。实际应用中，$l_{\min}$,$l_{\max}$应根据具体需
-求进行一定的变化。基于以上定义，我们将问题转化为：用户GPS坐标在参考点GPS坐标的一定
-范围内等价于检验以下公式
+要判断坐标$S$是否在坐标$P$的一定范围内，我们可以参考平面中心圆模型。
+通过判断两者间的距离$R$是否处于一定数值范围内，即可检验坐标间关系是否满足要求。
+为了使问题更加明确，本文中用符号$l_{min}$,$l_{max}$分别来表示距离的下界和上界，
+且均为整数。在本文中，$l_{min}$默认取$0$，因为取$0$已经可以满足应用场景的需求。
+至于整数的选取则是为了将问题迁移到零知识范围证明上时更加简单、易实现。实际应用中，
+$l_{\min}$,$l_{\max}$应根据具体需求进行一定的变化。基于以上定义，我们将问题转化为：
+用户GPS坐标在参考点GPS坐标的一定范围内等价于检验以下公式：
 \begin{equation}l_{\min}< d_{SP}\leq l_{\max}\end{equation}\par
 其中$d_{SP}$代表坐标$S$和$P$之间的距离，数值选取小数点后5位。而要得出$d_{SP}$的具
 体数值，我们需要利用坐标$S(x_1,y_1)$和$P(x_2,y_2)$进行如下公式计算:
@@ -710,8 +702,14 @@ $a\odot b=(a_1,\ldots,a_k)\odot(b_1,\ldots,b_k)=(a_1b_1,\ldots,a_kb_k)$。$bi()$
 
 \subsection{关键技术}
 
-基于交互式谕示机证明的零知识范围证明
-% +说明
+基于已介绍的基础知识，此部分将正式阐述基于交互式谕示机证明
+的零知识范围证明的原理和构造过程。这一部分将逐步递进，依次
+介绍批处理向量内积证明、任意基底$u$的范围证明、批处理范围
+证明、对于任意范围的范围证明和补充零知识性。从而阐释本文ZKRP
+中的批处理实现、任意基底原理、任意范围证明的转化、零知识性
+质的由来，以及如何借助这些理论来完成零知识范围证明的构造。
+在以上过程中，我们将理解零知识范围证明的重要部分，形成对
+零知识范围证明基本原理与框架的认识，进而掌握零知识范围证明的核心所在。
 \subsubsection{批处理向量内积论证}
 为了实现批处理IPA（Batch Inner Product Argument, B-IPA），我们考虑单变量求和校验协议的
 一个性质：无论多个多项式的阶数是否相同，单变量求
@@ -888,8 +886,103 @@ $\hat{v}^{\prime}_j=\hat{v}_j+\hat{Z}_H\cdot\hat{\delta}_j$，其中$\hat{Z}_H$�
 
 %********************作品成果展示与安全性分析********************
 \section{作品成果展示与安全性分析}
+\subsection{ZKRP性能分析}
+\subsubsection{空间复杂度}
+本篇论文所使用的ZKRP具有较小的空间复杂度。在实际零知识范围证明中，证明的大小是处于可接受范围的。以上将从两方面进行分析：\par
+从理论层面分析，证明的空间占用主要来自于以下几个方面：1.RS编码中的插值集和估值集。2.默克尔树。3.批量IPA开销。进而可以推出整个理论证明大小，相关公式表示如下：
+\begin{equation}
+  \begin{aligned}
+  1|H|\enspace+&1|H|+ 2\cdot Tree(|L|/2^{\eta_1}, \ell)|H|\enspace + \enspace2\cdot Tree(|L|/2^{\eta_1+\eta_2}, \ell)|H| \enspace+\\
+  &\enspace3\cdot \ell \cdot 2^{\eta_1}|\mathbb{F}|\enspace +\enspace \ell \cdot 2^{\eta_2}|\mathbb{F}|\enspace + \enspace2^{k_{max}-\eta_1-\eta_2}|\mathbb{F}|
+  \end{aligned}
+\end{equation}
+从实际需求出发，一般情况下GPS范围证明的距离边界可选范围
+$[l_{\min}$,$l_{\max}]\subseteq[0, 10^6]$。经整数化处理，范围扩展到
+$L_{\min}$,$L_{\max}\subseteq[0, 10^{11}]$。而对于本文的ZKRP，即使范
+围扩大到$[0, 2^{512}-1]$,在其它参数选取合理的情况下，其证明大小也仅有$40.7KB$。
+这意味着，在GPS范围证明的应用场景下，ZKRP证明大小可以保持在一个很小的值，
+不会占用太多的空间。而这符合GPS范围证明对轻量化的需求。\par
+以二进制向量为基准，本文ZKRP与其它后量子安全ZKRP的空间性能测试结果
+如表\ref{空间性能}所示。从表格可以看出，当维数$n$不断增大时，
+本文ZKRP的证明大小增长幅度明显小于基于格的ZKRP[35]，在$n=512$时，
+前者证明大小已经小于后者，缩减幅度达到了$20.6 \% $。这充分说明，
+无论维数是高还是低，本文ZKRP均有不错的证明大小。除此之外，
+本文ZKRP由于引入了批量处理操作，其在多次证明时具有相当优异的表现。
+与[17]中的ZKRP相比，当$n=1000$时，本文ZKRP证明大小远小于后者，
+仅为后者的$9.7\%$。批量处理操作的引入，可以说是大幅度优化了范围证明在多次证明中的表现，
+这有利于有效解决实际应用中的多证明处理问题。
+\begin{table}[!h] % [!h]
+    \centering
+    \caption{范围证明空间性能测试结果}
+    \begin{threeparttable}
+        \begin{tabular}{|c|c|c|c|c|}\hline
+            \multirow{2}{*}{维数n} & \multirow{2}{*}{证明次数t}&\multicolumn{3}{c|}{范围证明大小}  \\ \cline{3-5}
+            \multirow{2}{*}{} & \multirow{2}{*}{}& $\pi$ & $\pi \quad in [学长35]$ & $\pi \quad in [学长17]$\\ \hline
+            32 & 1 & 22.4KB & 11.8KB & -\\ \hline
+             64 & 1 & 28.7KB & - & -\\ \hline
+            128 & 1 & 28.3KB & 26.4KB & -\\ \hline
+             256 & 1 & 34.8KB & - & -\\ \hline
+             512 & 1 & 40.7KB & 51.3KB & -\\ \hline
+            \multirow{3}{*}{固定64} & 180 & 0.11MB & - & 4.52MB \\ \cline{2-5}
+            \multirow{3}{*}{} & 500 & 0.27MB & - & 4.87MB \\ \cline{2-5}
+             \multirow{3}{*}{} & 1000 & 0.52MB & - & 5.36MB \\ \cline{1-5}
+        \end{tabular}
+        注：其中前四行数据涉及参数               $\ell=41$,$\rho=2^{-3}$,$e=3$,$\lambda=120$,$\eta=\{2,2\}$。第五行参数
+         $\ell=41$,$\rho=2^{-3}$,$e=3$,$\lambda=120$,$\eta=\{2,3\}$。后三行参数$\ell=33$,$\rho=2^{-3}$,$e=3$,$\lambda=128$,$\eta=\{1,2\}$。
+    \end{threeparttable}
+    \label{空间性能}
+\end{table}
+\subsubsection{时间复杂度}
+本篇论文采用的ZKRP在运行时间上同样具有不错的表现，尤其是面对GPS范围证明这种输入数值相对较小的应用场景。\par
+从理论层面分析，双方交互的时间为$\mathcal{O}(\log n)|\mathbb{F}|$,证明时间为$\mathcal{O}(n\log n)$FFT$+\mathcal{O}(\log$\\$ n)|\mathbb{F}|$,
+验证时间为$\mathcal{O}(n\log n)$FFT$+\mathcal{O}(logn)|\mathbb{F}|$，其中$n$代表向量维数。这些理论数值表明本文采用的ZKRP具有良好的时间性能。\par
+本文ZKRP的性能测试结果如表...所示（学长28页）。由表...可知，当维数$n=32$，范围维数为$32$时，证明时间为$0.0207s$，验证时间为$0.0041s$，
+处于一个很小的数量级。当维数$n$变为$128$，范围维数变为$512$时，证明时间为$0.5242s$，验证时间为$0.0624s$,两者时间明显增大。不过，类似于空间复杂度，
+由于应用场景中的证明范围并不是很大，范围证明的时间开销也是相对较小的。而在GPS范围证明这个应用场景，
+$[l_{\min}$,$l_{\max}]\subseteq[0, 10^6]\Rightarrow L_{\min}$,$L_{\max}\subseteq[0, 10^{11}]$，
+此时证明时间仍处于$10^{-2}$数量级，验证时间仍处于$10^{-3}$数量级。甚至在一般情况，范围可能进一步缩小到
+$[l_{\min}$,$l_{\max}]\subseteq[0, 10^3]\Rightarrow L_{\min}$,$L_{\max}\subseteq[0, 10^8]$，
+证明时间将进一步减少。而这种数量级的时间显然是可接受的。
+\begin{table}[!h] % [!h]
+    \centering
+    \caption{本文ZKRP时间性能测试结果}
+    \begin{tabular}{|c|c|c|c|}\hline
+        向量维数 &  范围维数 & 证明时间（s） & 验证时间（s）\\ \hline
+         \multirow{3}{*}{32} & 32 & 0.0207 & 0.0041 \\ \cline{2-4}
+         \multirow{3}{*}{} & 128 & 0.0456 & 0.0077 \\  \cline{2-4}
+         \multirow{3}{*}{} & 512 & 0.1855 & 0.0243\\ \hline
+         \multirow{3}{*}{64} & 32 & 0.0354 & 0.0069 \\ \cline{2-4}
+         \multirow{3}{*}{} & 128 & 0.0755 & 0.0123 \\  \cline{2-4}
+         \multirow{3}{*}{} & 512 & 0.2907 & 0.0400 \\ \hline
+         \multirow{3}{*}{128} & 32 & 0.0638 & 0.0103 \\ \cline{2-4}
+         \multirow{3}{*}{} & 128 & 0.1401 & 0.0197 \\  \cline{2-4}
+         \multirow{3}{*}{} & 512 & 0.5242 & 0.0624 \\ \hline
+    \end{tabular}
+    \label{tab:my_label}
+\end{table}
 \subsection{安全性分析}
-
+考虑系统框架和工作流程，整体系统的安全性主要取决于两个因素：
+随机距离$R$和用户隐藏的坐标$(x,y)$。以下将具体论述这两者的安全性。\par
+\textbf{随机距离$R$的安全性}\quad 考虑随机距离$R$的安全性等效于考虑
+根据公开参数$x',y',r$能否推出随机距离$R$。因为一旦确定$R$，那么就可以
+确定用户坐标$(x,y)$在以公开坐标$(x',y')$为中心，半径为$R$的环上，
+此时用户的可能坐标范围大幅度缩小，用户坐标的隐私性受到严重威胁。
+但在本文介绍的系统中，攻击者很难获得随机数$R$。原因如下：\par
+在随机距离$R$的生成上，系统选择利用Blum-Blum-Shub算法。具体生成流程为：
+首先将时间戳等变化的信息作为算法的种子输入，进而生成一个对应的随机数$R_0$。
+接着根据算法随机数生成范围与系统所需的$R$范围$[0,\frac{r}{2}]$的倍数差$q$，
+进行一次整除的范围缩小处理，得到所需的$R$，即$R=R_0//q$。观察流程，
+我们可以发现，随机距离$R$的生成实际上仅在最后的范围缩小处理过程中与$r$有关，
+而生成过程则完全独立与$r$。这表明$R$的安全性依靠于Blum-Blum-Shub算法的安全性，
+与公开参数无关。因此作为公认的强安全性随机数生成算法Blum-Blum-Shub算法
+保证了$R$的安全性。\par
+\textbf{用户坐标的安全性}\quad 在系统中,用户坐标的隐私性是由零知识范围
+证明技术保证的。在零知识范围证明中，通过对公开输入$x',y',r$和隐藏输入$(x,y)$
+进行一系列的数学运算，从而得到$(x,y)$在$(x',y')$一定范围内的零知识证明。由于
+证明过程是零知识的，即没有透露给验证方任何有效信息，验证方在知晓公开参数$x',y',r$
+的前提下也不会得到任何关于$(x,y)$的信息，即无法从证明的公开参数、过程和结果
+中推出隐藏输入$(x,y)$。而且本文中的ZKRP是后量子安全的，即使面对量子攻击，
+也拥有一定的抵抗攻击能力。ZKRP的使用充分保证了用户坐标的安全性，且强度很高。
 %********************前景展望********************
 \section{前景展望}
 
