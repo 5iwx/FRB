@@ -449,7 +449,14 @@ $^{[czh\_1.4]}$在这样的环境下，如何保护位置信息的隐私安全�
 %********************预备知识********************
 \section{预备知识}
 简单技术背景介绍
-\subsection{随机数生成}
+\subsection{基于椭圆曲线密码的随机数生成算法}
+我们选取位置模糊点时使用了基于椭圆曲线密码（ Elliptic Curve Cryptography, ECC ）的随机数生成算法，我们在 Lap-Piu Lee 提出的模型基础上，并针对我们的问题进行优化。
+该算法具有较小的密钥尺寸与较高的安全性，是一种轻量级伪随机数算法，Lap-Piu Lee在论文中证明了其基本模型能够通过FIPS 140-2标准中对伪随机数生成器的统计测试。\ref{}
+该算法选取一个定义在 $F_p$ 上的椭圆曲线 $E(F_p)$ ，其中p是素数。为了生成公私钥，首先选择椭圆曲线上的基点 $G(x,y)$，其阶数为 n ；接着选取私钥 d ，$1<d<n$ ；最终公钥为 $Q=dG$， $Q(x,y)$也是椭圆曲线上的点。
+为了生成伪随机数，该算法某一参数 y 的哈希值作为种子初始化伪随机数生成器，随机数生成的迭代公式为 $x_n=k_nQ,\ k_n=k_{n-1}+n-1,\ k_1=H(y)$ 。
+\par
+具体实现中选择的椭圆曲线参数为SECG（Standards for Efficient Cryptography Group）提出的SECP128r1标准；
+选择的哈希函数是BLAKE3 ，同样具有轻量化的特点。
 
 \subsection{范围证明的理论基础}
 \subsubsection{默克尔树}
@@ -586,7 +593,6 @@ $\hat{f}=f_0+f_1x+\cdots+f_nx^n$表示为向量$\vec{f}=(f_0,f_1,\cdots,f_n)$
 
 %********************作品设计与实现********************
 \section{作品设计与实现}
-\subsection{系统概述}
 
 \subsection{需求分析}
 为了使改进后的位置隐私保护系统更符合当前应用市场的需要，本文设计出的作品应满足一定的功能和性能的需求。本节将对位置隐私保护系统在功能上、性能上的需求进行分析，从而为本文作品指引改进方向。
@@ -598,6 +604,7 @@ $\hat{f}=f_0+f_1x+\cdots+f_nx^n$表示为向量$\vec{f}=(f_0,f_1,\cdots,f_n)$
 \par 
 位置隐私保护系统的出发点是保护用户隐私安全，不管如何改进，这一点应当始终保持。当前位置隐私保护技术主要通过添加虚假或者无关的位置信息，以此混淆用户真实的位置信息。改进后的位置信息保护系统虽然是基于零知识范围证明技术，但也应该达到这一效果。
 \par 
+我们的系统通过两方面来保证这一点，第一是随机选点时的随机性，第二是零知识证明对被证明信息的隐蔽性，第二点是对第一点的进一步补充和保护。
 \textbf{（2）保证用户返回的位置信息可信}
 \par 
 虽然在现阶段的“用户-服务提供商”模式下，保证用户提交的位置信息的真实性似乎没有很大的必要，但是可以看到，攻击者可以通过向服务提供商或者系统提交错误的位置信息，窃取系统信息，从而达到某种攻击系统的目的。所以改进后的位置隐私保护系统也应该保证位置信息的真实性，防止攻击者通过提交错误的位置信息攻击系统这一漏洞。
@@ -622,14 +629,14 @@ $\hat{f}=f_0+f_1x+\cdots+f_nx^n$表示为向量$\vec{f}=(f_0,f_1,\cdots,f_n)$
 位置信息涉及用户隐私，应该防止泄露的可能。所以系统应该具有一定的防卫或者恢复能力，在受到攻击或者发生错误时能采取措施减少损失。具体而言，当局部系统出错或受到攻击时，这部分系统应该能在较短时间内恢复并继续运行，而不会造成大范围影响，从而在最大程度上减少系统运行的风险。这也是应用场景对位置隐私保护系统在健壮性上的要求。
 
 
-\subsection{系统说明}
+\subsection{系统概述}
 本作品系统主要涉及两个主体：服务请求方和服务提供商。
 服务请求方一端由\textbf{手机网页端交互界面、定位与生成零知识范围证明系统}构成，具体技术涉及 Vue.js 、C++ 和 Python。
 服务提供商一端由\textbf{数据库、（零知识范围证明）验证系统}构成，开发技术使用 Shell 和 MySQL 。
 \par
 系统工作总体流程图如图所示 \ref{flowchart}。首先，请求方选择以何种精度 r 模糊自己的位置，接着本地系统自动采集用户的精确经纬度地理位置 $(x, y)$ 。
 本地系统获得参数 $(x, y, r)$ 后，在以 $\frac{r}{2}$ 为半径的圆内， 生成一个模糊位置 $(x',y')$ 。
-具体模糊位置生成过程为，使用基于椭圆曲线的轻量随机数生成算法（见预备知识节：3.2？？），生成一个随机极坐标 $(R, \alpha)$ ，极坐标原点为 $(x,y)$ 。然后基于该相对极坐标计算出模糊位置 $(x',y')$ 。
+具体模糊位置生成过程为，使用基于椭圆曲线的轻量随机数生成算法（见预备知识第一节），生成一个伪随机极坐标 $(R, \alpha)$ ，极坐标原点为 $(x,y)$ 。然后基于该相对极坐标计算出模糊位置 $(x',y')$ 。
 \par
 本地系统基于该模糊位置 $(x',\ y',\ R)$ ，生成一个对范围的零知识证明：$Proof: R<\frac{r}{2}$ ，并将 $x,\ y,\ Proof$ 打包发送至服务提供商数据库。
 服务提供商验证证明，确认用户在该模糊范围内，提供相应的服务。
@@ -703,6 +710,15 @@ $a\odot b=(a_1,\ldots,a_k)\odot(b_1,\ldots,b_k)=(a_1b_1,\ldots,a_kb_k)$。$bi()$
 表示将数转化为二进制的向量。以上的七个公式就是零知识范围证明实
 际上的证明对象，至此问题已经转化完成，接下去的流程就是零知识范
 围证明了。其中的具体原理，详见下一章关于零知识范围证明的介绍。
+\subsection{基于椭圆曲线密码的随机数算法问题转化}
+系统中需要根据精确位置信息 $(x,y)$ 与用户要求的精度 $r$ 生成伪随机数坐标。为了保证随机性，参数中还需要引入时间戳，即需要随机数算法 $F(x,\ y,\ r,\ t)=R,\ R\in (0,\frac{r}{2})$ 。
+我们需要对原有基于ECC的随机数算法做出适应性改进，具体函数 F(x,y,r,t) 的生成过程如下：
+\begin{itemize}
+  \item 使用BLAKE3中哈希函数计算参数 t（时间戳）和参数 y 的哈希值 $H(t,\ y)$ ，转化为整数并记为s。应保证 $1<s<n$ ，若不满足，则反复迭代使用哈希函数（例如计算 $H(H(t,\ y))$。
+  \item 使用 s 作为伪随机数生成器的初始化种子，计算 $R=s\cdot Q$ 。
+  \item 分别使用BLAKE3中哈希函数计算 $H(y),\ H(x)$
+  \item 异或计算 $Z=R\oplus H(x)\oplus H(y)$ ，并取余r，即$R=Z\ mod\ r$ ，得到结果。
+\end{itemize}
 
 
 \subsection{关键技术}
@@ -885,6 +901,81 @@ $\hat{v}^{\prime}_j=\hat{v}_j+\hat{Z}_H\cdot\hat{\delta}_j$，其中$\hat{Z}_H$�
 
 %********************作品成果展示与安全性分析********************
 \section{作品成果展示与安全性分析}
+\section{作品前端功能展示}
+\subsubsection{父级界面}
+本作品最终形式是手机“设置”应用中全新设计的隐私选项界面以及效果展示界面，后续可以封装为SDK软件工具包供第三方应用调用使用。
+\par
+根界面如图\ref{根目录}所示，用户可以选择不同应用，进入针对不同应用的设置选项界面，符合一般“设置”应用组织逻辑。
+%
+\begin{figure}[H] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形
+    \centering %图片居中
+    \includegraphics[width=0.3\textwidth]{前端-1.jpg} %插入图片，[]中设置图片大小，{}中是图片文件名
+    \caption{选择”应用“根界面} %最终文档中希望显示的图片标题
+    \label{根目录} %用于文内引用的标签
+\end{figure}
+\par
+举例而言，用户点击进入“地图”应用的具体设置界面，如下图\ref{地图应用}所示。
+界面中用户可以选择是否开启我们的基于零知识范围证明技术的位置隐私保护服务，并在下方通过滚轮组件选择用户希望的用户精度。
+选择好后，用户可以进入演示界面。一般情境下，用户在此即可退出，在具体应用请求位置时我们的系统能够自动开始工作，为了作品演示需求，我们在此提供虚拟演示界面。
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}{0.31\textwidth}
+    \includegraphics[width=\linewidth]{前端-2.jpg}
+    \caption{界面示意图} 
+  \end{subfigure}%
+  \hspace*{2cm}   % maximize separation between subfigures
+  \begin{subfigure}{0.31\textwidth}
+    \includegraphics[width=\linewidth]{前端-3.jpg}
+    \caption{交互演示}
+  \end{subfigure}
+\caption{“地图”应用设置界面}
+\label{地图应用}
+\end{figure}
+
+\subsubsection{实际效果演示界面}
+实际效果界面主体由一张虚拟地图构成，如图\ref{演示界面}所示，用户有一个退出键和三个主要选项，分别是“定位”，“模糊”以及“生成证明”。
+\par
+“定位”选项，系统请求当前用户精确位置，并在虚拟地图上显示相对坐标；“模糊”选项，系统生成用户模糊位置范围，并在虚拟地图上用红色突出显示；
+“生成证明”选项，系统更具用户模糊范围生成零知识范围证明，并发送给服务器，进行验证。“生成证明按钮”会同时弹出文字提示，用户上滑界面即可进入认证界面。
+\begin{figure}[htbp]
+  \vspace*{-2cm}
+  \begin{subfigure}{0.31\textwidth}
+    \includegraphics[width=\linewidth]{前端-定位.jpg}
+    \caption{定位操作示意图} 
+  \end{subfigure}%
+  \hspace*{\fill}   % maximize separation between subfigures
+  \begin{subfigure}{0.31\textwidth}
+    \includegraphics[width=\linewidth]{前端-模糊.jpg}
+    \caption{模糊操作示意图} 
+  \end{subfigure}
+  \hspace*{\fill}   % maximizeseparation between subfigures
+  \begin{subfigure}{0.31\textwidth}
+    \includegraphics[width=\linewidth]{前端-生成证明.jpg}
+    \caption{生成证明操作示意图} 
+    \end{subfigure}
+\caption{一行三张子图并排示意}
+\label{演示界面}
+\end{figure}
+
+\subsubsection{认证界面}
+\par
+用户向服务提供商服务器发送证明后，服务器会对证明进行验证，过程中用户和服务器会反复通信验证。认证界面\ref{verify}的进度条会显示当前认证进度，并且会提示用户当前证明的范围具体值。
+当认证成功后，会跳出文字提示，至此系统完成一次模糊位置情况下的服务请求。
+\begin{figure}[htbp]
+  \vspace*{-2cm}
+  \centering
+  \begin{subfigure}{0.31\textwidth}
+    \includegraphics[width=\linewidth]{前端-认证中.jpg}
+    \caption{示意图}
+  \end{subfigure}%
+  \hspace*{2cm}   % maximize separation between subfigures
+  \begin{subfigure}{0.31\textwidth}
+    \includegraphics[width=\linewidth]{前端-认证成功.jpg}
+    \caption{交互} 
+  \end{subfigure}
+\caption{“地图”应用设置界面}
+\label{verify}
+\end{figure}
 \subsection{安全性分析}
 
 %********************前景展望********************
