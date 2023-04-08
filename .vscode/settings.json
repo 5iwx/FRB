@@ -33,6 +33,15 @@
 
     "latex-workshop.latex.recipes": [
         {
+            "name": "xe->bib->xe->xe",
+            "tools": [
+                "xelatex",
+                "bibtex",
+                "xelatex",
+                "xelatex"
+            ]
+        },
+        {
             "name": "xelatex",
             "tools": [
                 "xelatex"
@@ -45,15 +54,6 @@
             ]
         },
         {
-            "name": "xe->bib->xe->xe",
-            "tools": [
-                "xelatex",
-                "bibtex",
-                "xelatex",
-                "xelatex"
-            ]
-        },
-        {
             "name": "pdf->bib->pdf->pdf",
             "tools": [
                 "pdflatex",
@@ -63,4 +63,25 @@
             ]
         }
     ],
+    "latex-workshop.latex.clean.fileTypes": [
+        // "*.aux",
+        "*.bbl",
+        "*.blg",
+        "*.idx",
+        "*.ind",
+        "*.lof",
+        "*.lot",
+        "*.out",
+        "*.toc",
+        "*.acn",
+        "*.acr",
+        "*.alg",
+        "*.glg",
+        "*.glo",
+        "*.gls",
+        "*.ist",
+        "*.fls",
+        "*.log",
+        "*.fdb_latexmk"
+    ], 
 }
