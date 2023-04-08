@@ -1,0 +1,129 @@
+{
+	"冯如杯-列表item": {
+		"prefix": "冯如杯-列表item",
+		"description": "冯如杯-列表item",
+		"scope": "latex",
+		"body": [
+			"\\begin{itemize}\r",
+			"  \\item \r",
+			"\\end{itemize}"
+		]
+	},
+	"冯如杯--插入图片": {
+		"prefix": "冯如杯--插入图片",
+		"description": "冯如杯--插入图片",
+		"scope": "latex",
+		"body": [
+			"%插入一张图片\r",
+			"\\begin{figure}[H] %H为当前位置，!htb为忽略美学标准，htbp为浮动图形\r",
+			"    \\centering %图片居中\r",
+			"    \\includegraphics[width=0.8\\textwidth]{example-image-2.png} %插入图片，[]中设置图片大小，{}中是图片文件名\r",
+			"    \\caption{example\\_caption} %最终文档中希望显示的图片标题\r",
+			"    \\label{example_label} %用于文内引用的标签\r",
+			"\\end{figure}"
+		]
+	},
+	"1*3子图示意图结构": {
+		"prefix": "1*3子图示意图结构",
+		"description": "1*3子图示意图结构",
+		"scope": "latex",
+		"body": [
+			"% 一行三张子图并排示意\r",
+			"\\begin{figure}[htbp]\r",
+			"  \\begin{subfigure}{0.31\\textwidth}\r",
+			"    \\includegraphics[width=\\linewidth]{example-image-1.png}\r",
+			"    \\caption{示意图1} \\label{fig:9aaa}\r",
+			"  \\end{subfigure}%\r",
+			"  \\hspace*{\\fill}   % maximize separation between subfigures\r",
+			"  \\begin{subfigure}{0.31\\textwidth}\r",
+			"    \\includegraphics[width=\\linewidth]{example-image-1.png}\r",
+			"    \\caption{示意图2} \\label{fig:9bbb}\r",
+			"  \\end{subfigure}\r",
+			"  \\hspace*{\\fill}   % maximizeseparation between subfigures\r",
+			"  \\begin{subfigure}{0.31\\textwidth}\r",
+			"    \\includegraphics[width=\\linewidth]{example-image-1.png}\r",
+			"    \\caption{示意图3} \\label{fig:9ccc}\r",
+			"    \\end{subfigure}\r",
+			"\\caption{一行三张子图并排示意}\r",
+			"\\label{qmix-train}\r",
+			"\\end{figure}"
+		]
+	},
+	"2*2四张子图示意图结构": {
+		"prefix": "2*2四张子图示意图结构",
+		"description": "2*2四张子图示意图结构",
+		"scope": "latex",
+		"body": [
+			"% 2*2四张子图示意\r",
+			"\\begin{figure}[htbp]\r",
+			"  \\begin{subfigure}{0.48\\textwidth}\r",
+			"    \\includegraphics[width=\\linewidth]{example-image-1.png}\r",
+			"    \\caption{示意图1} \\label{fig:8a}\r",
+			"  \\end{subfigure}%\r",
+			"  \\hspace*{\\fill}   % maximize separation between subfigures\r",
+			"  \\begin{subfigure}{0.48\\textwidth}\r",
+			"    \\includegraphics[width=\\linewidth]{example-image-1.png}\r",
+			"    \\caption{示意图2} \\label{fig:8b}\r",
+			"  \\end{subfigure}\\\\\r",
+			"  %\\hspace*{\\fill}   % maximizeseparation between subfigures\r",
+			"  \\begin{subfigure}{0.48\\textwidth}\r",
+			"    \\includegraphics[width=\\linewidth]{example-image-1.png}\r",
+			"    \\caption{示意图3} \\label{fig:8c}\r",
+			"  \\end{subfigure}\r",
+			"  \\hspace*{\\fill}   % maximize separation between subfigures\r",
+			"  \\begin{subfigure}{0.48\\textwidth}\r",
+			"    \\includegraphics[width=\\linewidth]{example-image-1.png}\r",
+			"    \\caption{示意图4} \\label{fig:8d}\r",
+			"  \\end{subfigure}\r",
+			"\\caption{2*2四张子图示意} \\label{fig:8}\r",
+			"\\end{figure}"
+		]
+	},
+	"普通表格": {
+		"prefix": "普通表格",
+		"description": "普通表格",
+		"scope": "latex",
+		"body": [
+			"\\begin{table*}[t]\r",
+			"\\centering\r",
+			"\\caption{表格使用示例}\r",
+			"\\begin{tabular}{|l||c|c|c|c|c|c|}\r",
+			"\\hline\r",
+			"{\\textbf{表头 1}}     &  表头 2 \t    & 表头 3 \t  & 表头 4     & 表头 5 \t\t\\\\ \\hline\\hline\r",
+			"内容 11 \t\t          & 内容 12\t\t\t\t& 内容 13\t\t& 内容 14 \t & 内容 15\t\t\\\\ \\hline\r",
+			"内容 21\t              & 内容 22\t\t\t\t& 内容 23\t\t& 内容 24\t   & 内容 25\t\t\\\\ \\hline\r",
+			"\r",
+			"\r",
+			"\\end{tabular}\r",
+			"\\end{table*}"
+		]
+	},
+	"冯如杯--三线表": {
+		"prefix": "冯如杯--三线表",
+		"description": "冯如杯--三线表",
+		"scope": "latex",
+		"body": [
+			"\\begin{table}[H]\r",
+			"\\caption{三线表使用示例}\r",
+			"\\centering\r",
+			"\\begin{tabular}{ccccc}\r",
+			"\\hline  \r",
+			"\\textbf{方法} & \\textbf{表头 1} & \\textbf{表头 2} & \\textbf{表头 3} & \\textbf{表头 4} \\\\ \r",
+			"\\hline  \r",
+			"方法1 & 数据  & 数据  & 数据  & 数据\\\\\r",
+			"方法2 & 数据  & 数据  & 数据  & 数据\\\\\r",
+			"\\hline\r",
+			"\\end{tabular} \r",
+			"\\end{table} "
+		]
+	},
+	"冯如杯--无标号章节": {
+		"prefix": "冯如杯--无标号章节",
+		"description": "冯如杯--无标号章节",
+		"scope": "latex",
+		"body": [
+			"\\section*{结论}% section*生成无标号章节\r",
+			"\\addcontentsline{toc}{section}{结论} % 将无标号章节添加至目录"
+		]
+	}
+}
