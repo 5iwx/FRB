@@ -45,15 +45,6 @@
             ]
         },
         {
-            "name": "xe->bib->xe->xe",
-            "tools": [
-                "xelatex",
-                "bibtex",
-                "xelatex",
-                "xelatex"
-            ]
-        },
-        {
             "name": "pdf->bib->pdf->pdf",
             "tools": [
                 "pdflatex",
@@ -61,6 +52,36 @@
                 "pdflatex",
                 "pdflatex"
             ]
+        },
+        {
+            "name": "xe->bib->xe->xe",
+            "tools": [
+                "xelatex",
+                "bibtex",
+                "xelatex",
+                "xelatex"
+            ]
         }
+
     ],
+    "latex-workshop.latex.clean.fileTypes": [
+        // "*.aux",
+        "*.bbl",
+        "*.blg",
+        "*.idx",
+        "*.ind",
+        "*.lof",
+        "*.lot",
+        "*.out",
+        "*.acn",
+        "*.acr",
+        "*.alg",
+        "*.glg",
+        "*.glo",
+        "*.gls",
+        "*.ist",
+        "*.fls",
+        "*.log",
+        "*.fdb_latexmk"
+    ], 
 }
